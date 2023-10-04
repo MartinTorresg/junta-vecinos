@@ -7,6 +7,8 @@ import { PrivateLayout } from '../components/layout/private/PrivateLayout';
 import { Feed } from '../components/noticias/Feed';
 import { AuthProvider } from '../context/AuthProvider';
 import { Logout } from '../components/user/Logout';
+import { CrearNoticias } from '../components/noticias/CrearNoticias';
+import { Noticia } from '../components/noticias/Noticia';
 
 export const Routing = () => {
   return (
@@ -23,6 +25,8 @@ export const Routing = () => {
           <Route path="/social" element={<PrivateLayout />}>
             <Route index element={<Feed />} />
             <Route path="feed" element={<Feed />} />
+            <Route path="crear-noticias" element={<CrearNoticias />} />
+            <Route path="articulo/:id" element={<Noticia />} />
             <Route path="logout" element={<Logout />} />
           </Route>
 

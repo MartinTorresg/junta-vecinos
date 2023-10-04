@@ -136,105 +136,7 @@ body {
     padding: 0.5rem;
 }
 
-/*ESTILOS DE CONTENIDO*/
-.layout__content{
-    grid-area: content;
-    padding: 0 1.5rem;
-}
-
-.content__login{
-    margin-top: 4.5rem;
-}
-
-.content__header, .aside__header{
-    width: 100%;
-    border-bottom: 1px solid var(--color-border-headers);
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-   
-}
-
-.content__title, .aside__title{
-    font-size: 3.5rem;
-    margin-right: 1rem;
-}
-
-.content__button{
-    background-color: var(--color-background-btn-success);
-    color: var(--color-text-navbar);
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--color-border-btn-success);
-    border-radius: 0.3rem;
-    font-size: 1.2rem;
-    line-height: 1.5;
-    cursor: pointer;
-}
-
-
-.content__button:hover, .content__btn-more-post:hover {
-    background-color: var(--color-background-btn-success-hover);
-    border-color: var(--color-border-btn-success-hover);
-}
-
-
-.content__posts{
-    width: 100%;
-}
-
-
-.posts__post{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-    border-radius: 0.4rem;
-    border: 1px solid var(--color-border-post);
-    padding: 1.5rem;
-}
-
-
-.post__container{
-    display: flex;
-    flex-direction: row;
-}
-
-.post__image-user{
-    width: 7.5rem;
-    height: 7.5rem;
-    border-radius: 100rem;
-    margin-right: 1.5rem;
-    overflow: hidden;
-}
-
-.post__user-image{
-    width: 100%;
-    height: 100%;
-    border-radius: 3.2rem;
-}
-
-.post__user-info{
-    margin-top: 1rem;
-}
-
-.user-info__name{
-    color: var(--color-name-user);
-}
-
-.user-info__create-date{
-    color: gray;
-}
-
-.post__content{
-    margin: 1rem 0;
-    font-size: 1.8rem;
-    font-weight: 500;
-}
-
+/*ESTILOS BOTONES PUBLICACIONES*/
 .post__buttons{
     display: flex;
     align-items: center;
@@ -455,4 +357,95 @@ button{
     background: #d92d19;
     border: 1px solid #8a0202;
     color: white;
+}
+
+/*ESTILOS PARA LAS NOTICIAS*/
+
+.content{
+    grid-area: content;
+    background: #f6f7f9;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: initial;
+    flex-grow: 1;
+}
+
+.articulo-item{
+    flex-grow: 1;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #ddd;
+    margin: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: left;
+    max-height: 400px;
+    display: flex;
+}
+
+.articulo-item .mascara {
+    width: 20%;
+    overflow: hidden;
+    margin-right: 40px;
+}
+
+.articulo-item .mascara img {
+    width: 100%;
+}
+
+
+
+.articulo-item h3 {
+    font-size: 20px;
+}
+
+.articulo-item h3 a {
+    text-decoration: none;
+    color: black;
+}
+
+.articulo-item h3 a:hover{
+    color: rgb(3, 74, 227);
+}
+
+.articulo-item .edit{
+    margin-right: 20px;
+}
+
+.articulo-item .edit:hover{
+    background: #e77b00;
+}
+
+.articulo-item .delete:hover{
+    background: #9b0202;
+}
+
+.jumbo {
+    width: 85%;
+    padding: 55px;
+    padding-bottom: 75px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px #ddd;
+    margin: 25px auto;
+}
+
+.jumbo h1{
+    font-size: 35px;
+    color: #444;
+}
+
+.jumbo p{
+    display: block;
+    margin-bottom: 40px;
+}
+
+.jumbo .mascara{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
 }

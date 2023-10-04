@@ -1,156 +1,41 @@
-import React from 'react'
-/* aca hay que cambiar hartas cosas relacionada a las noticias, que incluya una foto y los estilos css */
+import React from 'react';
+import { useState, useEffect } from "react";
+import { Global } from '../../helpers/Global';
+import { Peticion } from '../../helpers/Peticion';
+import { Listado } from './Listado';
+// aqui se veran todas las noticias en general
 export const Feed = () => {
-  return (
+
+    const [articulos, setArticulos] = useState([]);
+    const [cargando, setCargando] = useState(true);
+
+    useEffect(() => {
+        conseguirArticulos();
+    }, [])
+
+    const conseguirArticulos = async () => {
+
+        const { datos, cargando } = await Peticion(Global.url + "articulos", "GET");
+
+        if (datos.status === "success") {
+            setArticulos(datos.articulos);
+        }
+
+        setCargando(false)
+    }
+
+    return (
         <>
             <header className="content__header">
                 <h1 className="content__title">Noticias</h1>
                 <button className="content__button">Mostrar nuevas</button>
             </header>
-
-            <div className="content__posts">
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-
-                    </div>
-
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                            <i className="fa-solid fa-trash-can"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                            <i className="fa-solid fa-trash-can"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                            <i className="fa-solid fa-trash-can"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-
-
-                <div className="posts__post">
-
-                    <div className="post__container">
-
-                        <div className="post__image-user">
-                            <a href="#" className="post__image-link">
-                                <img src="assets/img/user.png" className="post__user-image" alt="Foto de perfil" />
-                            </a>
-                        </div>
-
-                        <div className="post__body">
-
-                            <div className="post__user-info">
-                                <a href="#" className="user-info__name">Victor Robles</a>
-                                <span className="user-info__divider"> | </span>
-                                <a href="#" className="user-info__create-date">Hace 1 hora</a>
-                            </div>
-
-                            <h4 className="post__content">Hola, buenos dias.</h4>
-
-                        </div>
-                    </div>
-
-                    <div className="post__buttons">
-
-                        <a href="#" className="post__button">
-                            <i className="fa-solid fa-trash-can"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-            <div className="content__container-btn">
-                <button className="content__btn-more-post">
-                    Ver mas publicaciones
-                </button>
-            </div>
+            {cargando ? "Cargando..." :
+                articulos.length >= 1 ? 
+                        <Listado articulos={articulos} setArticulos={setArticulos}/>
+                        : <h1>No hay articulos</h1>
+            }
 
         </>
-  )
+    )
 }
