@@ -73,7 +73,7 @@ export const Login = () => {
           </div>
 
           <div className='form-group'>
-            <label htmlFor='password'>Email</label>
+            <label htmlFor='password'>Contraseña</label>
             <input type='password' name='password' onChange={changed} />
           </div>
 

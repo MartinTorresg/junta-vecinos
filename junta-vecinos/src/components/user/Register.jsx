@@ -61,8 +61,8 @@ export const Register = () => {
             </div>
 
             <div className='form-group'>
-              <label htmlFor="nick">Nick</label>
-              <input type="text" name="nick" onChange={changed} />
+              <label htmlFor="rut">Rut</label>
+              <input type="text" name="rut" onChange={changed} />
             </div>
 
             <div className='form-group'>

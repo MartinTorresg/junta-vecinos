@@ -8,30 +8,37 @@ export const Nav = () => {
 
             <ul className="container-lists__menu-list">
                 <li className="menu-list__item">
-                    <NavLink to="/social" className="menu-list__link">
+                    <NavLink to="/admin" className="menu-list__link">
                         <i className="fa-solid fa-house"></i>
                         <span className="menu-list__title">Inicio</span>
                     </NavLink>
                 </li>
 
                 <li className="menu-list__item">
-                    <NavLink to="/social/inscripciones" className="menu-list__link">
+                    <NavLink to="/admin/inscripciones" className="menu-list__link">
                         <i className="fa-solid fa-list"></i>
                         <span className="menu-list__title">Inscripciones</span>
                     </NavLink>
                 </li>
 
                 <li className="menu-list__item">
-                    <NavLink to="/social/certificados" className="menu-list__link">
+                    <NavLink to="/admin/certificados" className="menu-list__link">
                         <i className="fa-solid fa-images"></i>
                         <span className="menu-list__title">Certificados</span>
                     </NavLink>
                 </li>
 
                 <li className="menu-list__item">
-                    <NavLink to="/social/proyectos" className="menu-list__link">
+                    <NavLink to="/admin/proyectos" className="menu-list__link">
                         <i className="fa-solid fa-users"></i>
-                        <span className="menu-list__title">Proyectos y actividades</span>
+                        <span className="menu-list__title"> Crear proyectos y actividades</span>
+                    </NavLink>
+                </li>
+
+                <li className="menu-list__item">
+                    <NavLink to="/admin/crear-noticias" className="menu-list__link">
+                        <i class="fa-regular fa-message"></i>
+                        <span className="menu-list__title">Crear noticias</span>
                     </NavLink>
                 </li>
 
