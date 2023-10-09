@@ -3,25 +3,25 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
-import { ListadoProyectos } from './ListadoProyectos';
+import { ListadoInscripciones } from './ListadoInscripciones';
 // aqui se veran todas las noticias en general
 /* aca hay que cambiar hartas cosas relacionada a las noticias, que incluya una foto y los estilos css */
-export const Proyecto = () => {
+export const Inscripcion = () => {
 
-    const [proyecto, setProyecto] = useState({});
+    const [inscripcion, setInscripcion] = useState({});
     const [cargando, setCargando] = useState(true);
     const params = useParams();
 
     useEffect(() => {
-        conseguirProyecto();
+        conseguirInscripcion();
     }, [])
 
-    const conseguirProyecto = async () => {
+    const conseguirInscripcion = async () => {
 
-        const { datos, cargando } = await Peticion(Global.url + "proyecto/proyecto/" + params.id, "GET");
+        const { datos, cargando } = await Peticion(Global.url + "inscripcion/inscripcion/" + params.id, "GET");
 
         if (datos.status === "success") {
-            setProyecto(datos.proyecto);
+            setInscripcion(datos.inscripcion);
         }
 
         setCargando(false)
@@ -31,8 +31,12 @@ export const Proyecto = () => {
         <div className='jumbo'>
             {cargando ? "Cargando..." :
                 <>
-                    <h1>{proyecto.nombre}</h1>
-                    <p>{proyecto.descripcion}</p>
+                    <h1>{inscripcion.nombre}</h1>
+                    <p>{inscripcion.apellidos}</p>
+                    <p>{inscripcion.run}</p>
+                    <p>{inscripcion.email}</p>
+                    <p>{inscripcion.fecha_nacimiento}</p>
+                    <p>{inscripcion.direccion}</p>
                 </>
 
             }

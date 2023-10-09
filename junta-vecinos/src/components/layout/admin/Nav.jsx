@@ -29,7 +29,7 @@ export const Nav = () => {
                 </li>
 
                 <li className="menu-list__item">
-                    <NavLink to="/admin/proyectos" className="menu-list__link">
+                    <NavLink to="/admin/proyecto/proyectos" className="menu-list__link">
                         <i className="fa-solid fa-users"></i>
                         <span className="menu-list__title"> Crear proyectos y actividades</span>
                     </NavLink>
@@ -37,7 +37,7 @@ export const Nav = () => {
 
                 <li className="menu-list__item">
                     <NavLink to="/admin/crear-noticias" className="menu-list__link">
-                        <i class="fa-regular fa-message"></i>
+                        <i className="fa-regular fa-message"></i>
                         <span className="menu-list__title">Crear noticias</span>
                     </NavLink>
                 </li>
@@ -62,7 +62,7 @@ export const Nav = () => {
                     </a>
                 </li>
                 <li className="list-end__item">
-                    <NavLink to="/social/logout" className="list-end__link">
+                    <NavLink to="/admin/logout" className="list-end__link">
                         <i className='fa-solid fa-arrow-right-from-bracket'></i>
                         <span className="list-end__name">Cerrar sesión</span>
                     </NavLink>
