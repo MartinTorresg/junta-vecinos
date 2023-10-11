@@ -22,7 +22,7 @@ export const ListadoInscripciones = ({ inscripciones, setInscripciones }) => {
             return (
                 <article key={inscripcion._id} className="articulo-item">
                     <div className='datos'>
-                        <h3 className="title"><Link to={"/admin/inscripcion/inscripcion/" + inscripcion._id}>{inscripcion.nombre}</Link></h3>
+                        <h3 className="title"><Link to={"/admin/inscripcion/" + inscripcion._id}>{inscripcion.nombre}</Link></h3>
                         <p className="description">{inscripcion.apellido}</p>
 
                         {auth.email === 'admin@gmail.com' && (

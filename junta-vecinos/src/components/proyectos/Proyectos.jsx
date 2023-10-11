@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
 import { ListadoProyectos } from './ListadoProyectos';
+import { Actividades } from '../actividades/Actividades';
 // aqui se veran todas las noticias en general
 export const Proyectos = () => {
 
@@ -35,7 +36,7 @@ export const Proyectos = () => {
                         <ListadoProyectos proyectos={proyectos} setProyectos={setProyectos}/>
                         : <h1>No hay proyectos</h1>
             }
-
+            <Actividades />
         </>
     )
 }

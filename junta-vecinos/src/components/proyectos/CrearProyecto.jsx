@@ -23,7 +23,7 @@ export const CrearProyecto = () => {
         }else{
             setResultado("error");
         }
-    }
+    };
 
     return (
         <div className='jumbo'>
@@ -49,5 +49,6 @@ export const CrearProyecto = () => {
 
             </form>
         </div>
+        
     )
 }

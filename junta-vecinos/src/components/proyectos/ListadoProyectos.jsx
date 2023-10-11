@@ -23,7 +23,7 @@ export const ListadoProyectos = ({ proyectos, setProyectos }) => {
                 <article key={proyecto._id} className="articulo-item">
                     <div className='datos'>
                         <h4>Proyecto</h4>
-                        <h3 className="title"><Link to={"/admin/proyecto/proyecto/" + proyecto._id}>{proyecto.nombre}</Link></h3>
+                        <h3 className="title"><Link to={"/admin/proyecto/" + proyecto._id}>{proyecto.nombre}</Link></h3>
                         <p className="description">{proyecto.descripcion}</p>
 
                         {auth.email === 'admin@gmail.com' && (
