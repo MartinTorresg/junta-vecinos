@@ -27,7 +27,6 @@ export const ListadoInscripciones = ({ inscripciones, setInscripciones }) => {
 
                         {auth.email === 'admin@gmail.com' && (
                             <div>
-                                <button className="edit">Editar</button>
                                 <button className="delete" onClick={() => eliminar(inscripcion._id)}>Borrar</button>
                             </div>
                         )}

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
 import { ListadoInscripciones } from './ListadoInscripciones';
+import { Register } from '../user/Register';
 // aqui se veran todas las noticias en general
 /* aca hay que cambiar hartas cosas relacionada a las noticias, que incluya una foto y los estilos css */
 export const Inscripcion = () => {
@@ -40,6 +41,7 @@ export const Inscripcion = () => {
                 </>
 
             }
+            <Register />
 
         </div>
     )

@@ -10,12 +10,21 @@ export const Nav = () => {
 
             <ul className="container-lists__menu-list">
                 <li className="menu-list__item">
-                    <a href="#" className="menu-list__link">
-                        <i className="fa-solid fa-house"></i>
-                        <span className="menu-list__title">Inicio</span>
-                    </a>
+                    <NavLink to="/login" className="menu-list__link">
+                        <i className="fa-solid fa-user"></i>
+                        <span className="menu-list__title">debo cambiar esto</span>
+                    </NavLink>
                 </li>
 
+                <li className="menu-list__item">
+                    <NavLink to="/inscripcion" className="menu-list__link">
+                        <i className="fa-solid fa-users"></i>
+                        <span className="menu-list__title">esto igual</span>
+                    </NavLink>
+                </li>
+            </ul>
+
+            <ul className="container-lists__list-end">
                 <li className="menu-list__item">
                     <NavLink to="/login" className="menu-list__link">
                         <i className="fa-solid fa-user"></i>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import { PublicLayout } from '../components/layout/publico/PublicLayout';
-import { Register } from '../components/user/Register';
 import { Login } from '../components/user/Login';
 import { PrivateLayout } from '../components/layout/private/PrivateLayout';
 import { Feed } from '../components/noticias/Feed';
@@ -10,7 +9,6 @@ import { Logout } from '../components/user/Logout';
 import { CrearNoticias } from '../components/noticias/CrearNoticias';
 import { Noticia } from '../components/noticias/Noticia';
 import { AdminLayout } from '../components/layout/admin/AdminLayout'
-import { CrearProyecto } from '../components/proyectos/CrearProyecto';
 import { Proyectos } from '../components/proyectos/Proyectos';
 import { CrearInscripcion } from '../components/vecino/CrearInscripcion';
 import { Inscripciones } from '../components/vecino/inscripciones';
@@ -18,6 +16,7 @@ import { Inscripcion } from '../components/vecino/Inscripcion';
 import { Actividades } from '../components/actividades/Actividades';
 import { ProyectoYActividades } from '../components/layout/admin/ProyectoYActividades';
 import { Proyecto } from '../components/proyectos/Proyecto';
+import { MuniLayout } from '../components/layout/municipalidad/MuniLayout';
 
 export const Routing = () => {
   return (
@@ -50,6 +49,12 @@ export const Routing = () => {
             <Route path="proyecto/proyectos" element={<Actividades />} />
             <Route path="proyecto/:id" element={<Proyecto />} />
 
+            <Route path="logout" element={<Logout />} />
+          </Route>
+
+          <Route path="/municipalidad" element={<MuniLayout />}>
+            <Route index element={<Feed />} />
+            <Route path="feed" element={<Feed />} />
             <Route path="logout" element={<Logout />} />
           </Route>
 
