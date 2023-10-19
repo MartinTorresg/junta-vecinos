@@ -20,7 +20,7 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
     return (
         actividades.map(actividad => {
             return (
-                <article key={actividad._id} className="actividad-item">
+                <article key={actividad._id} className="articulo-item">
                     <div className='datos'>
                         <h3 className="title"><Link to={"/admin/actividad/" + actividad._id}>{actividad.nombre}</Link></h3>
                         <p className="description">Fecha: {new Date(actividad.fecha).toLocaleDateString()}</p>
