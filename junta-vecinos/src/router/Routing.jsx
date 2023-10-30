@@ -17,6 +17,9 @@ import { Actividades } from '../components/actividades/Actividades';
 import { ProyectoYActividades } from '../components/layout/admin/ProyectoYActividades';
 import { Proyecto } from '../components/proyectos/Proyecto';
 import { MuniLayout } from '../components/layout/municipalidad/MuniLayout';
+import { CrearCertificados } from '../components/certificados/CrearCertificados';
+import { Certificados } from '../components/certificados/Certificados';
+import { Certificado } from '../components/certificados/Certificado';
 
 export const Routing = () => {
   return (
@@ -28,6 +31,7 @@ export const Routing = () => {
             <Route index element={<Login />} />
             <Route path="login" element={<Login />} />
             <Route path="inscripcion" element={<CrearInscripcion />} />
+            <Route path="crear-certificados" element={<CrearCertificados/>} />
           </Route>
 
           <Route path="/social" element={<PrivateLayout />}>
@@ -48,6 +52,8 @@ export const Routing = () => {
             <Route path="proyecto/proyectos" element={<Proyectos />} />
             <Route path="proyecto/proyectos" element={<Actividades />} />
             <Route path="proyecto/:id" element={<Proyecto />} />
+            <Route path="certificados" element={<Certificados />} />
+            <Route path="certificados/:id" element={<Certificado />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

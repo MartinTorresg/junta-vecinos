@@ -56,7 +56,7 @@ export const Login = () => {
         <h1 className='content__title'>Login</h1>
       </header>
 
-      <div className='content__post'>
+      <div className='articulo-item'>
 
         {saved == "login" ?
           <strong className='alert alert-success'>Usuario identificado correctamente !!</strong>
