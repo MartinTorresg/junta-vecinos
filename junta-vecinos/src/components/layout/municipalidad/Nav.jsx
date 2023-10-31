@@ -8,7 +8,7 @@ export const Nav = () => {
 
             <ul className="container-lists__menu-list">
                 <li className="menu-list__item">
-                    <NavLink to="/admin" className="menu-list__link">
+                    <NavLink to="/municipalidad" className="menu-list__link">
                         <i className="fa-solid fa-house"></i>
                         <span className="menu-list__title">Inicio</span>
                     </NavLink>
@@ -22,25 +22,12 @@ export const Nav = () => {
                 </li>
 
                 <li className="menu-list__item">
-                    <NavLink to="/admin/certificados" className="menu-list__link">
-                        <i className="fa-solid fa-images"></i>
-                        <span className="menu-list__title">Certificados</span>
-                    </NavLink>
-                </li>
-
-                <li className="menu-list__item">
-                    <NavLink to="/admin/proyecto/proyectos" className="menu-list__link">
+                    <NavLink to="/municipalidad/proyecto/proyectos" className="menu-list__link">
                         <i className="fa-solid fa-users"></i>
-                        <span className="menu-list__title"> Crear proyectos y actividades</span>
+                        <span className="menu-list__title">proyectos y actividades</span>
                     </NavLink>
                 </li>
 
-                <li className="menu-list__item">
-                    <NavLink to="/admin/crear-noticias" className="menu-list__link">
-                        <i className="fa-regular fa-message"></i>
-                        <span className="menu-list__title">Crear noticias</span>
-                    </NavLink>
-                </li>
 
             </ul>
 

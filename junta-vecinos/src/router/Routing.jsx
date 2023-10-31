@@ -20,6 +20,8 @@ import { MuniLayout } from '../components/layout/municipalidad/MuniLayout';
 import { CrearCertificados } from '../components/certificados/CrearCertificados';
 import { Certificados } from '../components/certificados/Certificados';
 import { Certificado } from '../components/certificados/Certificado';
+import { Actividad } from '../components/actividades/Actividad';
+import { CertificadoUsuario } from '../components/certificados/CertificadoUsuario';
 
 export const Routing = () => {
   return (
@@ -40,6 +42,7 @@ export const Routing = () => {
             <Route path="articulo/:id" element={<Noticia />} />
             <Route path="proyecto/crear" element={<ProyectoYActividades />} />
             <Route path="logout" element={<Logout />} />
+            <Route path="certificados" element={<CertificadoUsuario />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>
@@ -52,6 +55,7 @@ export const Routing = () => {
             <Route path="proyecto/proyectos" element={<Proyectos />} />
             <Route path="proyecto/proyectos" element={<Actividades />} />
             <Route path="proyecto/:id" element={<Proyecto />} />
+            <Route path="actividad/:id" element={<Actividad />} />
             <Route path="certificados" element={<Certificados />} />
             <Route path="certificados/:id" element={<Certificado />} />
 
@@ -61,6 +65,12 @@ export const Routing = () => {
           <Route path="/municipalidad" element={<MuniLayout />}>
             <Route index element={<Feed />} />
             <Route path="feed" element={<Feed />} />
+            <Route path="logout" element={<Logout />} />
+            <Route path="proyecto/proyectos" element={<Proyectos />} />
+            <Route path="proyecto/proyectos" element={<Actividades />} />
+            <Route path="proyecto/:id" element={<Proyecto />} />
+            <Route path="actividad/:id" element={<Actividad />} />
+
             <Route path="logout" element={<Logout />} />
           </Route>
 
