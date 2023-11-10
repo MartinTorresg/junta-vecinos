@@ -21,7 +21,7 @@ import { CrearCertificados } from '../components/certificados/CrearCertificados'
 import { Certificados } from '../components/certificados/Certificados';
 import { Certificado } from '../components/certificados/Certificado';
 import { Actividad } from '../components/actividades/Actividad';
-import { CertificadoUsuario } from '../components/certificados/CertificadoUsuario';
+import { CrearCertificadoUsuario } from '../components/certificados/CrearCertificadoUsuario';
 
 export const Routing = () => {
   return (
@@ -42,7 +42,7 @@ export const Routing = () => {
             <Route path="articulo/:id" element={<Noticia />} />
             <Route path="proyecto/crear" element={<ProyectoYActividades />} />
             <Route path="logout" element={<Logout />} />
-            <Route path="certificados" element={<CertificadoUsuario />} />
+            <Route path="certificados" element={<CrearCertificadoUsuario />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>

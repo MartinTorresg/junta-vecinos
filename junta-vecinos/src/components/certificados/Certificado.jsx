@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
+import { CertificadoUsuario } from './CertificadoUsuario';
 
 export const Certificado = () => {
     const [certificado, setCertificado] = useState({});
@@ -33,6 +34,7 @@ export const Certificado = () => {
                     <p><strong>Comuna: </strong>{certificado.comuna}</p>
                 </>
             }
+            < CertificadoUsuario />
         </div>
     );
 };
