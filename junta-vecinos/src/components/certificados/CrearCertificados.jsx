@@ -39,6 +39,11 @@ export const CrearCertificados = () => {
                 </div>
 
                 <div className='form-group'>
+                    <label htmlFor="email">Correo</label>
+                    <input type="text" name="email" onChange={cambiado} />
+                </div>
+
+                <div className='form-group'>
                     <label htmlFor="rut">RUT</label>
                     <input type="text" name="rut" onChange={cambiado} />
                 </div>
