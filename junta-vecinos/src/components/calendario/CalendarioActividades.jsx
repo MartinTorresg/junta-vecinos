@@ -12,7 +12,7 @@ const CalendarioActividades = () => {
     const [fecha, setFecha] = useState(new Date());
     const [actividades, setActividades] = useState([]);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [actividadSeleccionada, setActividadSeleccionada] = useState(null);
+    const [actividadesSeleccionadas, setActividadesSeleccionadas] = useState([]);
 
     useEffect(() => {
         const fechaFormato = fecha.toISOString().split('T')[0];
@@ -25,14 +25,30 @@ const CalendarioActividades = () => {
             });
     }, [fecha]);
 
-    const abrirModal = (actividad) => {
-        setActividadSeleccionada(actividad);
+    const abrirModal = (actividadesDelDia) => {
+        setActividadesSeleccionadas(actividadesDelDia);
         setModalIsOpen(true);
     };
 
     const cerrarModal = () => {
         setModalIsOpen(false);
-        setActividadSeleccionada(null);
+        setActividadesSeleccionadas([]);
+    };
+
+    const tileContent = ({ date, view }) => {
+        if (view === 'month') {
+            const actividadesDelDia = actividades.filter(actividad => 
+                new Date(actividad.fecha).toDateString() === date.toDateString()
+            );
+            if (actividadesDelDia.length > 0) {
+                return (
+                    <div className="day-with-activities">
+                        {actividadesDelDia.length}
+                    </div>
+                );
+            }
+        }
+        return null;
     };
 
     return (
@@ -45,23 +61,30 @@ const CalendarioActividades = () => {
                         new Date(actividad.fecha).toDateString() === value.toDateString()
                     );
                     if (actividadesDelDia.length > 0) {
-                        abrirModal(actividadesDelDia[0]); // Abrir modal con la primera actividad del día
+                        abrirModal(actividadesDelDia);
                     }
                 }}
+                tileContent={tileContent}
             />
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={cerrarModal}
-                contentLabel="Detalle de Actividad"
+                contentLabel="Detalle de Actividades"
             >
-                {actividadSeleccionada && (
+                {actividadesSeleccionadas.length > 0 ? (
                     <div>
-                        <h2>{actividadSeleccionada.nombre}</h2>
-                        <p>Lugar: {actividadSeleccionada.lugar}</p>
-                        <p>Fecha: {actividadSeleccionada.fecha}</p>
-                        {/* Otros detalles de la actividad */}
+                        <h2>Actividades del Día</h2>
+                        <ul>
+                            {actividadesSeleccionadas.map((actividad, index) => (
+                                <li key={index}>
+                                    {actividad.nombre} - {actividad.lugar} - {actividad.fecha}
+                                </li>
+                            ))}
+                        </ul>
                         <button onClick={cerrarModal}>Cerrar</button>
                     </div>
+                ) : (
+                    <p>No hay actividades programadas para esta fecha.</p>
                 )}
             </Modal>
         </div>

@@ -449,3 +449,38 @@ button{
     height: 150px;
     overflow: hidden;
 }
+
+/* Estilos para el calendario */
+.react-calendar {
+    max-width: 400px; /* Ancho máximo del calendario */
+    margin: 0 auto; /* Centrar el calendario horizontalmente */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+    background-color: #0c8e0c;
+}
+
+/* Estilos para los días de la semana (encabezado) */
+.react-calendar__month-view__weekdays {
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Convertir el texto a mayúsculas */
+    padding: 8px 0; /* Espacio interno superior e inferior */
+    background-color: #f0f0f0; /* Color de fondo de los días de la semana */
+}
+
+/* Estilos para los días en el calendario */
+.react-calendar__month-view__days {
+    font-size: 16px; /* Tamaño de fuente para los días */
+}
+
+/* Estilos para los días con actividades */
+.day-with-activities {
+    background-color: #ffcc00; /* Color de fondo para los días con actividades */
+    border-radius: 50%; /* Redondear los marcadores de día */
+    width: 20px; /* Ancho del marcador */
+    height: 20px; /* Altura del marcador */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; /* Color del texto en el marcador */
+    font-weight: bold; /* Texto en negrita */
+    cursor: pointer; /* Cambiar el cursor al hacer clic en el marcador */
+}
