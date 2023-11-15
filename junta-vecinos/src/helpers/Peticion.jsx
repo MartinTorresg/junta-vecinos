@@ -13,27 +13,25 @@ export const Peticion = async (url, metodo, datosGuardar = "", archivos = false)
         };
     }
 
-    if (metodo == "POST" || metodo == "PUT") {
-
-        let body = "";
-
+    if (metodo === "POST" || metodo === "PUT") {
         if (archivos) {
             opciones = {
                 method: metodo,
                 body: datosGuardar
-            }
+            };
         } else {
             opciones = {
                 method: metodo,
-                body: JSON.stringify(datosGuardar),
                 headers: {
                     "Content-Type": "application/json"
                 }
             };
+            if (datosGuardar) {
+                opciones.body = JSON.stringify(datosGuardar);
+            }
         }
-
-
     }
+    
 
     const peticion = await fetch(url, opciones);
     const datos = await peticion.json();

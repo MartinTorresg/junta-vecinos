@@ -5,17 +5,30 @@ import { Peticion } from '../../helpers/Peticion';
 import useAuth from '../../hooks/useAuth';
 
 export const ListadoActividades = ({ actividades, setActividades }) => {
-
-    const { auth, loading } = useAuth();
+    const { auth } = useAuth();
 
     const eliminar = async (id) => {
-        let { datos } = await Peticion(Global.url + "actividad/" + id, "DELETE");
+        let { datos } = await Peticion(Global.url + "actividad/eliminar/" + id, "DELETE");
 
         if (datos.status === "success") {
             let actividadesActualizadas = actividades.filter(actividad => actividad._id !== id);
             setActividades(actividadesActualizadas);
         }
-    }
+    };
+
+    const aprobar = async (id) => {
+        let { datos } = await Peticion(Global.url + "actividad/aprobar/" + id, "PUT");
+
+        if (datos.status === "success") {
+            let actividadesActualizadas = actividades.map(actividad => {
+                if (actividad._id === id) {
+                    return { ...actividad, estado: 'aprobada' };
+                }
+                return actividad;
+            });
+            setActividades(actividadesActualizadas);
+        }
+    };
 
     return (
         actividades.map(actividad => {
@@ -32,6 +45,9 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
                             <div>
                                 <button className="edit">Editar</button>
                                 <button className="delete" onClick={() => eliminar(actividad._id)}>Borrar</button>
+                                {actividad.estado !== 'aprobada' && (
+                                    <button className="approve" onClick={() => aprobar(actividad._id)}>Aprobar</button>
+                                )}
                             </div>
                         )}
                     </div>
@@ -39,4 +55,4 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
             );
         })
     )
-}
+};

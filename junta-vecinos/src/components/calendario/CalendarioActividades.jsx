@@ -5,8 +5,7 @@ import Modal from 'react-modal';
 import 'react-calendar/dist/Calendar.css';
 import { Global } from '../../helpers/Global';
 
-// Configuración básica para el modal
-Modal.setAppElement('#root'); // Reemplaza '#root' con el ID de tu elemento raíz
+Modal.setAppElement('#root');
 
 const CalendarioActividades = () => {
     const [fecha, setFecha] = useState(new Date());
@@ -18,7 +17,9 @@ const CalendarioActividades = () => {
         const fechaFormato = fecha.toISOString().split('T')[0];
         axios.get(Global.url + `actividad/actividades/${fechaFormato}`)
             .then(response => {
-                setActividades(response.data.actividades);
+                // Filtrar solo las actividades aprobadas
+                const actividadesAprobadas = response.data.actividades.filter(actividad => actividad.estado === 'aprobada');
+                setActividades(actividadesAprobadas);
             })
             .catch(error => {
                 console.error('Error al obtener actividades', error);
@@ -41,11 +42,7 @@ const CalendarioActividades = () => {
                 new Date(actividad.fecha).toDateString() === date.toDateString()
             );
             if (actividadesDelDia.length > 0) {
-                return (
-                    <div className="day-with-activities">
-                        {actividadesDelDia.length}
-                    </div>
-                );
+                return <div className="day-with-activities">{actividadesDelDia.length}</div>;
             }
         }
         return null;
@@ -77,7 +74,7 @@ const CalendarioActividades = () => {
                         <ul>
                             {actividadesSeleccionadas.map((actividad, index) => (
                                 <li key={index}>
-                                    {actividad.nombre} - {actividad.lugar} - {actividad.fecha}
+                                    {actividad.nombre} - {actividad.lugar} - {new Date(actividad.fecha).toLocaleDateString()}
                                 </li>
                             ))}
                         </ul>
@@ -89,6 +86,6 @@ const CalendarioActividades = () => {
             </Modal>
         </div>
     );
-}
+};
 
 export default CalendarioActividades;
