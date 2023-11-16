@@ -11,7 +11,7 @@ import { Noticia } from '../components/noticias/Noticia';
 import { AdminLayout } from '../components/layout/admin/AdminLayout'
 import { Proyectos } from '../components/proyectos/Proyectos';
 import { CrearInscripcion } from '../components/vecino/CrearInscripcion';
-import { Inscripciones } from '../components/vecino/inscripciones';
+import { Inscripciones } from '../components/vecino/Inscripciones';
 import { Inscripcion } from '../components/vecino/Inscripcion';
 import { Actividades } from '../components/actividades/Actividades';
 import { ProyectoYActividades } from '../components/layout/admin/ProyectoYActividades';
@@ -22,6 +22,9 @@ import { Certificados } from '../components/certificados/Certificados';
 import { Certificado } from '../components/certificados/Certificado';
 import { Actividad } from '../components/actividades/Actividad';
 import { CrearCertificadoUsuario } from '../components/certificados/CrearCertificadoUsuario';
+import CambioContraseña from '../components/user/CambioContraseña';
+import KPIDashboard from '../components/layout/municipalidad/KPIDashboard';
+import KPIRegistroVecinosDashboard from '../components/layout/municipalidad/KPIRegistroVecinosDashboard'
 
 export const Routing = () => {
   return (
@@ -43,6 +46,7 @@ export const Routing = () => {
             <Route path="proyecto/crear" element={<ProyectoYActividades />} />
             <Route path="logout" element={<Logout />} />
             <Route path="certificados" element={<CrearCertificadoUsuario />} />
+            <Route path="cambio-contrasena" element={<CambioContraseña />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>
@@ -70,6 +74,8 @@ export const Routing = () => {
             <Route path="proyecto/proyectos" element={<Actividades />} />
             <Route path="proyecto/:id" element={<Proyecto />} />
             <Route path="actividad/:id" element={<Actividad />} />
+            <Route path="kpis" element={<KPIDashboard />} />
+            <Route path="kpis/registro-vecinos" element={<KPIRegistroVecinosDashboard />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

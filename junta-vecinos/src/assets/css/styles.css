@@ -484,3 +484,23 @@ button{
     font-weight: bold; /* Texto en negrita */
     cursor: pointer; /* Cambiar el cursor al hacer clic en el marcador */
 }
+
+.kpi-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.kpi {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+}
+
+.kpi-data {
+    font-size: 20px;
+    color: #333;
+    margin-top: 10px;
+}
+

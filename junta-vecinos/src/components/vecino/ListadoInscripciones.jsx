@@ -8,7 +8,7 @@ export const ListadoInscripciones = ({ inscripciones, setInscripciones }) => {
 
     const { auth, loading } = useAuth();
     const eliminar = async (id) => {
-        let { datos } = await Peticion(Global.url + "inscripcion/inscripcion/" + id, "DELETE");
+        let { datos } = await Peticion(Global.url + "inscripcion/borrar-inscripcion/" + id, "DELETE");
 
         if (datos.status === "success") {
             let inscripcionesActualizados = inscripciones.filter(inscripciones => inscripciones._id !== id);
@@ -24,6 +24,7 @@ export const ListadoInscripciones = ({ inscripciones, setInscripciones }) => {
                     <div className='datos'>
                         <h3 className="title"><Link to={"/admin/inscripcion/" + inscripcion._id}>{inscripcion.nombre}</Link></h3>
                         <p className="description">{inscripcion.apellido}</p>
+                        <p className='estado'>{inscripcion.estado}</p>
 
                         {auth.email === 'admin@gmail.com' && (
                             <div>

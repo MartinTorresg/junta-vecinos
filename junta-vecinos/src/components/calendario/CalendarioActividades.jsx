@@ -17,7 +17,6 @@ const CalendarioActividades = () => {
         const fechaFormato = fecha.toISOString().split('T')[0];
         axios.get(Global.url + `actividad/actividades/${fechaFormato}`)
             .then(response => {
-                // Filtrar solo las actividades aprobadas
                 const actividadesAprobadas = response.data.actividades.filter(actividad => actividad.estado === 'aprobada');
                 setActividades(actividadesAprobadas);
             })
@@ -25,6 +24,11 @@ const CalendarioActividades = () => {
                 console.error('Error al obtener actividades', error);
             });
     }, [fecha]);
+
+    const convertirAFechaUTC = (fechaString) => {
+        const [year, month, day] = fechaString.split('-').map(num => parseInt(num, 10));
+        return new Date(Date.UTC(year, month - 1, day));
+    };
 
     const abrirModal = (actividadesDelDia) => {
         setActividadesSeleccionadas(actividadesDelDia);
@@ -36,10 +40,16 @@ const CalendarioActividades = () => {
         setActividadesSeleccionadas([]);
     };
 
+    const compararFechas = (fecha1, fecha2) => {
+        return fecha1.getFullYear() === fecha2.getFullYear() &&
+               fecha1.getMonth() === fecha2.getMonth() &&
+               fecha1.getDate() === fecha2.getDate();
+    };
+
     const tileContent = ({ date, view }) => {
         if (view === 'month') {
             const actividadesDelDia = actividades.filter(actividad => 
-                new Date(actividad.fecha).toDateString() === date.toDateString()
+                compararFechas(convertirAFechaUTC(actividad.fecha), date)
             );
             if (actividadesDelDia.length > 0) {
                 return <div className="day-with-activities">{actividadesDelDia.length}</div>;
@@ -55,7 +65,7 @@ const CalendarioActividades = () => {
                 value={fecha}
                 onClickDay={(value, event) => {
                     const actividadesDelDia = actividades.filter(actividad => 
-                        new Date(actividad.fecha).toDateString() === value.toDateString()
+                        compararFechas(convertirAFechaUTC(actividad.fecha), value)
                     );
                     if (actividadesDelDia.length > 0) {
                         abrirModal(actividadesDelDia);
@@ -74,7 +84,7 @@ const CalendarioActividades = () => {
                         <ul>
                             {actividadesSeleccionadas.map((actividad, index) => (
                                 <li key={index}>
-                                    {actividad.nombre} - {actividad.lugar} - {new Date(actividad.fecha).toLocaleDateString()}
+                                    {actividad.nombre} - {actividad.lugar} - {convertirAFechaUTC(actividad.fecha).toLocaleDateString()}
                                 </li>
                             ))}
                         </ul>

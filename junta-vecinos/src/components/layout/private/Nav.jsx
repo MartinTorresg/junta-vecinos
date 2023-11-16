@@ -1,8 +1,11 @@
-import React from 'react'
-import avatar from '../../../assets/img/user.png'
-import { NavLink } from 'react-router-dom'
+import React from 'react';
+import avatar from '../../../assets/img/user.png';
+import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 export const Nav = () => {
+
+    const { auth, loading } = useAuth();
     return (
         <nav className="navbar__container-lists">
 
@@ -17,7 +20,7 @@ export const Nav = () => {
                 <li className="menu-list__item">
                     <NavLink to="/social/certificados" className="menu-list__link">
                         <i className="fa-solid fa-images"></i>
-                        <span className="menu-list__title">Certificadon´t</span>
+                        <span className="menu-list__title">Certificado</span>
                     </NavLink>
                 </li>
 
@@ -31,22 +34,23 @@ export const Nav = () => {
             </ul>
 
             <ul className="container-lists__list-end">
-                <li className="list-end__item">
-                    <a href="#" className="list-end__link-image">
-                        <img src={avatar} className="list-end__img" alt="Imagen de perfil" />
-                    </a>
-                </li>
-                <li className="list-end__item">
-                    <a href="#" className="list-end__link">
-                        <span className="list-end__name">nick</span>
-                    </a>
-                </li>
-                <li className="list-end__item">
-                    <a href="#" className="list-end__link">
-                        <i className='fa-solid fa-gear'></i>
-                        <span className="list-end__name">Ajustes</span>
-                    </a>
-                </li>
+                {/* Condición para mostrar el enlace de Admin o Municipalidad */}
+                {auth.email === 'admin@gmail.com' && (
+                    <li className="menu-list__item">
+                        <NavLink to="/admin" className="menu-list__link">
+                            <i className="fa-solid fa-user-shield"></i>
+                            <span className="menu-list__title">Admin</span>
+                        </NavLink>
+                    </li>
+                )}
+                {auth.email === 'municipalidad@gmail.com' && (
+                    <li className="menu-list__item">
+                        <NavLink to="/municipalidad" className="menu-list__link">
+                            <i className="fa-solid fa-building"></i>
+                            <span className="menu-list__title">Municipalidad</span>
+                        </NavLink>
+                    </li>
+                )}
                 <li className="list-end__item">
                     <NavLink to="/social/logout" className="list-end__link">
                         <i className='fa-solid fa-arrow-right-from-bracket'></i>

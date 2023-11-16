@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import useAuth from '../../../hooks/useAuth';
+import { SideBar } from '../private/SideBar';
 
 export const AdminLayout = () => {
 
@@ -27,6 +28,8 @@ export const AdminLayout = () => {
             <Navigate to="/login" />
           }
         </section>
+
+        <SideBar />
       </>
     );
 

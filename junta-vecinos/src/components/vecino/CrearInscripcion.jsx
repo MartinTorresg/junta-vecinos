@@ -1,47 +1,42 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from 'react';
 import { FormularioArticulos } from "../../hooks/FormularioArticulos";
 import { Peticion } from '../../helpers/Peticion';
 import { Global } from '../../helpers/Global';
 
 export const CrearInscripcion = () => {
 
-    const { formulario, enviado, cambiado } = FormularioArticulos({});
+    const { formulario, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
 
     const guardarInscripcion = async (e) => {
         e.preventDefault();
 
-        // Recoger datos formulario
         let nuevoInscripcion = formulario;
 
-        // Guardar articulo en el backend
         const { datos } = await Peticion(Global.url + "inscripcion/register", "POST", nuevoInscripcion);
 
         if(datos.status === "success"){
             setResultado("guardado");
-        }else{
+        } else {
             setResultado("error");
         }
-
     }
 
     return (
         <>
             <header className='content__header content__header--public'>
-                <h1 className='content__title'>Inscripcion</h1>
+                <h1 className='content__title'>Inscripción</h1>
             </header>
             <div className='content__post'>
-                {resultado == "saved" ?
+                {resultado === "guardado" ?
                     <strong className='alert alert-success'>Vecino registrado correctamente !!</strong>
                     : ''}
 
-                {resultado == "error" ?
-                    <strong className='alert alert-success'>Vecino no se registro !!</strong>
+                {resultado === "error" ?
+                    <strong className='alert alert-danger'>Vecino no se registró !!</strong>
                     : ''}
 
                 <form className='register-form' onSubmit={guardarInscripcion}>
-
                     <div className='form-group'>
                         <label htmlFor="nombre">Nombre</label>
                         <input type="text" name="nombre" onChange={cambiado} />
@@ -68,14 +63,12 @@ export const CrearInscripcion = () => {
                     </div>
 
                     <div className='form-group'>
-                        <label htmlFor="direccion">Direccion</label>
+                        <label htmlFor="direccion">Dirección</label>
                         <input type="text" name="direccion" onChange={cambiado} />
                     </div>
 
-                    <input type="submit" value="Registrate" className='btn btn-success' />
-
+                    <input type="submit" value="Regístrate" className='btn btn-success' />
                 </form>
-
             </div>
         </>
     )

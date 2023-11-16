@@ -33,7 +33,7 @@ export const Inscripcion = () => {
             {cargando ? "Cargando..." :
                 <>
                     <h1>{inscripcion.nombre}</h1>
-                    <p>{inscripcion.apellidos}</p>
+                    <p>{inscripcion.apellido}</p>
                     <p>{inscripcion.run}</p>
                     <p>{inscripcion.email}</p>
                     <p>{inscripcion.fecha_nacimiento}</p>
