@@ -54,9 +54,9 @@ const KPIDashboard = () => {
                 <p><strong>Límites Admitidos:</strong> {kpiRegistroVecinos.limites}</p>
             </div>
             <div>
-            <h1>Dashboard</h1>
-            <KPIRegistroVecinosDashboard />
-        </div>
+                <h1>Dashboard</h1>
+                <KPIRegistroVecinosDashboard />
+            </div>
         </div>
     );
 };

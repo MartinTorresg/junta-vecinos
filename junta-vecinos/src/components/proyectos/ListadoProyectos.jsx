@@ -25,10 +25,10 @@ export const ListadoProyectos = ({ proyectos, setProyectos }) => {
                         <h4>Proyecto</h4>
                         <h3 className="title"><Link to={"/admin/proyecto/" + proyecto._id}>{proyecto.nombre}</Link></h3>
                         <p className="description">{proyecto.descripcion}</p>
+                        <p className="estado">{proyecto.estado}</p>
 
-                        {auth.email === 'admin@gmail.com' && (
+                        {(auth.email === 'admin@gmail.com' || auth.email === 'municipalidad@gmail.com') && (
                             <div>
-                                <button className="edit">Editar</button>
                                 <button className="delete" onClick={() => eliminar(proyecto._id)}>Borrar</button>
                             </div>
                         )}

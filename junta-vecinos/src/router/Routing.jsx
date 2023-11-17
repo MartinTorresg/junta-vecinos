@@ -25,6 +25,7 @@ import { CrearCertificadoUsuario } from '../components/certificados/CrearCertifi
 import CambioContraseña from '../components/user/CambioContraseña';
 import KPIDashboard from '../components/layout/municipalidad/KPIDashboard';
 import KPIRegistroVecinosDashboard from '../components/layout/municipalidad/KPIRegistroVecinosDashboard'
+import KPIDashboard2 from '../components/layout/municipalidad/KPIDashboard2';
 
 export const Routing = () => {
   return (
@@ -74,8 +75,9 @@ export const Routing = () => {
             <Route path="proyecto/proyectos" element={<Actividades />} />
             <Route path="proyecto/:id" element={<Proyecto />} />
             <Route path="actividad/:id" element={<Actividad />} />
-            <Route path="kpis" element={<KPIDashboard />} />
+            <Route path="kpi1" element={<KPIDashboard />} />
             <Route path="kpis/registro-vecinos" element={<KPIRegistroVecinosDashboard />} />
+            <Route path="kpi2" element={<KPIDashboard2 />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

@@ -20,9 +20,15 @@ export const Nav = () => {
                     </NavLink>
                 </li>
                 <li className="menu-list__item">
-                    <NavLink to="/municipalidad/kpis" className="menu-list__link">
+                    <NavLink to="/municipalidad/kpi1" className="menu-list__link">
                         <i className="fa-solid fa-users"></i>
-                        <span className="menu-list__title">Kpi's</span>
+                        <span className="menu-list__title">Tasa de Registro de Vecinos</span>
+                    </NavLink>
+                </li>
+                <li className="menu-list__item">
+                    <NavLink to="/municipalidad/kpi2" className="menu-list__link">
+                        <i className="fa-solid fa-users"></i>
+                        <span className="menu-list__title">Tasa de presupuesto de proyectos por gastos</span>
                     </NavLink>
                 </li>
 
