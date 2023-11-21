@@ -25,7 +25,6 @@ export const Certificados = () => {
         <>
             <header className="content__header">
                 <h1 className="content__title">Certificados</h1>
-                <button className="content__button">Mostrar nuevos</button>
             </header>
             {cargando ? "Cargando..." :
                 certificados.length >= 1 ? 

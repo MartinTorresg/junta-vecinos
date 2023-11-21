@@ -5,7 +5,6 @@ import { CrearActividad } from '../../actividades/CrearActividad';
 export const ProyectoYActividades = () => {
     return (
         <div>
-            <h1>Crear Proyecto y Actividad</h1>
             <div className="crear-proyecto">
                 <h2>Crear Proyecto</h2>
                 <CrearProyecto />

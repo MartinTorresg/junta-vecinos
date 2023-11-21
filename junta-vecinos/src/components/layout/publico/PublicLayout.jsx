@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import useAuth from '../../../hooks/useAuth';
+import { SideBar } from '../private/SideBar';
 
 export const PublicLayout = () => {
 
@@ -20,6 +21,8 @@ export const PublicLayout = () => {
             <Navigate to="/social" />
         }
       </section>
+
+      <SideBar />
     </>
   )
 }

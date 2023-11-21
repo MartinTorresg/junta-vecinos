@@ -31,11 +31,13 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
     };
 
     return (
-        actividades.map(actividad => {
-            return (
+        <div className="listado-contenedor"> {/* Contenedor con padding */}
+            {actividades.map(actividad => (
                 <article key={actividad._id} className="articulo-item">
                     <div className='datos'>
-                        <h3 className="title"><Link to={"/admin/actividad/" + actividad._id}>{actividad.nombre}</Link></h3>
+                        <h3 className="title">
+                            <Link to={"/admin/actividad/" + actividad._id}>{actividad.nombre}</Link>
+                        </h3>
                         <p className="description">Fecha: {new Date(actividad.fecha).toLocaleDateString()}</p>
                         <p className="description">Hora: {actividad.hora}</p>
                         <p className="description">Lugar: {actividad.lugar}</p>
@@ -43,7 +45,6 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
 
                         {auth.email === 'admin@gmail.com' && (
                             <div>
-                                <button className="edit">Editar</button>
                                 <button className="delete" onClick={() => eliminar(actividad._id)}>Borrar</button>
                                 {actividad.estado !== 'aprobada' && (
                                     <button className="approve" onClick={() => aprobar(actividad._id)}>Aprobar</button>
@@ -52,7 +53,7 @@ export const ListadoActividades = ({ actividades, setActividades }) => {
                         )}
                     </div>
                 </article>
-            );
-        })
-    )
+            ))}
+        </div>
+    );
 };

@@ -69,6 +69,7 @@ export const CrearNoticias = () => {
                 <div className='form-group'>
                     <label htmlFor="file0">Imagen</label>
                     <input type='file' name='file0' id='file' />
+                    <p>Solo archivos .jpg</p>
                 </div>
 
                 <input type='submit' value="Guardar" className='btn btn-success' />

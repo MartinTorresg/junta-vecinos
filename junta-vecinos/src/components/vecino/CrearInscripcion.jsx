@@ -8,6 +8,22 @@ export const CrearInscripcion = () => {
     const { formulario, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
 
+    const formatearRut = (rutSinFormato) => {
+        let rutLimpio = rutSinFormato.replace(/\./g, '').replace('-', '');
+        if (rutLimpio.length > 9) {
+            rutLimpio = rutLimpio.substring(0, 9);
+        }
+        if (rutLimpio.length > 1) {
+            rutLimpio = `${rutLimpio.slice(0, -1)}-${rutLimpio.slice(-1)}`;
+        }
+        return rutLimpio.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    };
+
+    const handleChangeRut = (e) => {
+        const rutFormateado = formatearRut(e.target.value);
+        cambiado({ target: { name: 'run', value: rutFormateado } });
+    };
+
     const guardarInscripcion = async (e) => {
         e.preventDefault();
 
@@ -15,7 +31,7 @@ export const CrearInscripcion = () => {
 
         const { datos } = await Peticion(Global.url + "inscripcion/register", "POST", nuevoInscripcion);
 
-        if(datos.status === "success"){
+        if (datos.status === "success") {
             setResultado("guardado");
         } else {
             setResultado("error");
@@ -24,10 +40,11 @@ export const CrearInscripcion = () => {
 
     return (
         <>
-            <header className='content__header content__header--public'>
-                <h1 className='content__title'>Inscripción</h1>
-            </header>
-            <div className='content__post'>
+            <div className='jumbo'>
+
+                <h1>Crear Inscripción</h1>
+                <p>Formulario para crear una inscripción</p>
+
                 {resultado === "guardado" ?
                     <strong className='alert alert-success'>Vecino registrado correctamente !!</strong>
                     : ''}
@@ -49,7 +66,7 @@ export const CrearInscripcion = () => {
 
                     <div className='form-group'>
                         <label htmlFor="run">Run</label>
-                        <input type="text" name="run" onChange={cambiado} />
+                        <input type="text" name="run" value={formulario.run} onChange={handleChangeRut} />
                     </div>
 
                     <div className='form-group'>

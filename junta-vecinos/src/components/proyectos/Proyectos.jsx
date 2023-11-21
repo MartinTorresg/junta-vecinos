@@ -29,7 +29,6 @@ export const Proyectos = () => {
         <>
             <header className="content__header">
                 <h1 className="content__title">Proyectos y Actividades</h1>
-                <button className="content__button">Mostrar nuevas</button>
             </header>
             {cargando ? "Cargando..." :
                 proyectos.length >= 1 ? 

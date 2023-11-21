@@ -372,20 +372,30 @@ button{
     flex-grow: 1;
 }
 
-.articulo-item{
-    flex-grow: 1;
+/* Estilo general para contenedores de listado */
+.listado-contenedor {
+    padding: 0 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los elementos del listado */
+    justify-content: flex-start; /* Alineación de los elementos al inicio */
+    margin: -10px; /* Ajusta este margen negativo para compensar el espacio extra de los márgenes de los elementos */
+  }
+
+.articulo-item {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #ddd;
-    margin: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-left: 25px;
-    padding-right: 25px;
+    margin: 10px; /* Ajusta el margen para controlar el espacio alrededor de los elementos */
+    padding: 60px 25px; /* Compacta la declaración de padding */
     text-align: left;
     max-height: 400px;
     display: flex;
-}
+    flex-basis: calc(50% - 40px); /* Ajusta esta línea: 50% para dos elementos por fila, 40px para compensar el margen */
+    flex-grow: 0; /* Evita que los elementos crezcan más allá del flex-basis */
+    flex-shrink: 0; /* Evita que los elementos se encojan por debajo del flex-basis */
+  }
+  
 
 .articulo-item .mascara {
     width: 20%;
@@ -502,5 +512,44 @@ button{
     font-size: 20px;
     color: #333;
     margin-top: 10px;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+}
+
+.modal-titulo {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.modal-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-lista li {
+    background-color: #f0f0f0;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.modal-boton {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 

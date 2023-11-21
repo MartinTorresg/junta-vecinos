@@ -17,8 +17,8 @@ export const Listado = ({ certificados, setCertificados }) => {
     };
 
     return (
-        certificados.map(certificado => {
-            return (
+        <div className="listado-contenedor"> {/* Contenedor agregado */}
+            {certificados.map(certificado => (
                 <article key={certificado._id} className="articulo-item">
                     <div className='datos'>
                         <h3 className="title"><Link to={"/admin/certificados/" + certificado._id}>{certificado.nombre}</Link></h3>
@@ -35,7 +35,7 @@ export const Listado = ({ certificados, setCertificados }) => {
                         )}
                     </div>
                 </article>
-            );
-        })
+            ))}
+        </div>
     );
 };

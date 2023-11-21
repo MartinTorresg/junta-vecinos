@@ -7,11 +7,11 @@ export const Header = () => {
         <header className="layout__navbar">
 
             <div className="navbar__header">
-                <a href="#" className="navbar__title">ComunidadUnida</a>
+                <h1 className="navbar__title">Unidad Territorial</h1>
             </div>
 
             <Nav />
-        
+
         </header>
     )
 }

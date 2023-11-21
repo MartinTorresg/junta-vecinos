@@ -34,7 +34,6 @@ export const Inscripciones = () => {
         <>
             <header className="content__header">
                 <h1 className="content__title">Inscripciones</h1>
-                <button className="content__button">Mostrar nuevas</button>
             </header>
             {cargando ? "Cargando..." :
                 inscripciones.length >= 1 ?
