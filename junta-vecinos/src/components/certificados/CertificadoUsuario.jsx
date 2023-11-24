@@ -27,8 +27,8 @@ export const CertificadoUsuario = () => {
       nombre: certificado.nombre,
       rut: certificado.rut,
       direccion: certificado.direccion,
-      region: certificado.region,
-      comuna: certificado.comuna,
+      region: certificado.region?.nombre,
+      comuna: certificado.comuna?.nombre,
       email: certificado.email // Asegúrate de que este campo se esté estableciendo correctamente
     };
 

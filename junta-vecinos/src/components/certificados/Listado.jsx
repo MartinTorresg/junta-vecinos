@@ -24,8 +24,8 @@ export const Listado = ({ certificados, setCertificados }) => {
                         <h3 className="title"><Link to={"/admin/certificados/" + certificado._id}>{certificado.nombre}</Link></h3>
                         <p><strong>RUT: </strong>{certificado.rut}</p>
                         <p><strong>Dirección: </strong>{certificado.direccion}</p>
-                        <p><strong>Región: </strong>{certificado.region}</p>
-                        <p><strong>Comuna: </strong>{certificado.comuna}</p>
+                        <p><strong>Región: </strong>{certificado.region?.nombre || 'No especificado'}</p>
+                        <p><strong>Comuna: </strong>{certificado.comuna?.nombre || 'No especificado'}</p>
 
                         {auth.email === 'admin@gmail.com' && (
                             <div>

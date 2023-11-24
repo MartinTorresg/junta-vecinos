@@ -30,8 +30,8 @@ export const Certificado = () => {
                     <h1>{certificado.nombre}</h1>
                     <p><strong>RUT: </strong>{certificado.rut}</p>
                     <p><strong>Dirección: </strong>{certificado.direccion}</p>
-                    <p><strong>Región: </strong>{certificado.region}</p>
-                    <p><strong>Comuna: </strong>{certificado.comuna}</p>
+                    <p><strong>Región: </strong>{certificado.region?.nombre || 'No especificado'}</p>
+                    <p><strong>Comuna: </strong>{certificado.comuna?.nombre || 'No especificado'}</p>
                 </>
             }
             < CertificadoUsuario />

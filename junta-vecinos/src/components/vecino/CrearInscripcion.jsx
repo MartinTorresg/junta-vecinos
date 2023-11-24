@@ -7,6 +7,7 @@ export const CrearInscripcion = () => {
 
     const { formulario, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
+    
 
     const formatearRut = (rutSinFormato) => {
         let rutLimpio = rutSinFormato.replace(/\./g, '').replace('-', '');

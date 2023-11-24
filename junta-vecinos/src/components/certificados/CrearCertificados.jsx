@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormularioArticulos } from "../../hooks/FormularioArticulos";
 import { Peticion } from '../../helpers/Peticion';
 import { Global } from '../../helpers/Global';
@@ -6,7 +6,31 @@ import { Global } from '../../helpers/Global';
 export const CrearCertificados = () => {
     const { formulario, enviado, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
+    const [regiones, setRegiones] = useState([]);
+    const [comunas, setComunas] = useState([]);
 
+    useEffect(() => {
+        // Cargar regiones desde el backend
+        const cargarRegiones = async () => {
+            const response = await Peticion(Global.url + "regiones/regiones", "GET");
+            setRegiones(response.datos); // Ajusta según la estructura de tus datos
+        };
+        cargarRegiones();
+    }, []);
+
+    const handleRegionChange = async (e) => {
+        cambiado(e);
+        console.log("Región seleccionada:", e.target.value);
+    
+        try {
+            const response = await Peticion(Global.url + `comunas/comunas/region/${e.target.value}`, "GET");
+            console.log("Respuesta de comunas:", response);
+            setComunas(response.datos);
+        } catch (error) {
+            console.error("Error al cargar comunas:", error);
+        }
+    };
+    
     const guardarCertificado = async (e) => {
         e.preventDefault();
 
@@ -55,12 +79,20 @@ export const CrearCertificados = () => {
 
                 <div className='form-group'>
                     <label htmlFor="region">Región</label>
-                    <input type="text" name="region" onChange={cambiado} />
+                    <select name="region" onChange={handleRegionChange}>
+                        {regiones.map(region => (
+                            <option key={region._id} value={region._id}>{region.nombre}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className='form-group'>
                     <label htmlFor="comuna">Comuna</label>
-                    <input type="text" name="comuna" onChange={cambiado} />
+                    <select name="comuna" onChange={cambiado}>
+                        {comunas.map(comuna => (
+                            <option key={comuna._id} value={comuna._id}>{comuna.nombre}</option>
+                        ))}
+                    </select>
                 </div>
 
                 <input type='submit' value="Guardar" className='btn btn-success' />
