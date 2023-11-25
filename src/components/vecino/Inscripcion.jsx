@@ -37,7 +37,7 @@ export const Inscripcion = () => {
                     <p><strong>Comuna: </strong>{inscripcion.comuna?.nombre || 'No especificado'}</p>
                 </>
             }
-            <Register />
+            {!cargando && <Register datosInscripcion={inscripcion} />}
         </div>
     );
 };
