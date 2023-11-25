@@ -1,32 +1,27 @@
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
-import { ListadoInscripciones } from './ListadoInscripciones';
 import { Register } from '../user/Register';
-// aqui se veran todas las noticias en general
-/* aca hay que cambiar hartas cosas relacionada a las noticias, que incluya una foto y los estilos css */
-export const Inscripcion = () => {
 
+export const Inscripcion = () => {
     const [inscripcion, setInscripcion] = useState({});
     const [cargando, setCargando] = useState(true);
     const params = useParams();
 
     useEffect(() => {
         conseguirInscripcion();
-    }, [])
+    }, []);
 
     const conseguirInscripcion = async () => {
-
-        const { datos, cargando } = await Peticion(Global.url + "inscripcion/inscripcion/" + params.id, "GET");
+        const { datos } = await Peticion(Global.url + "inscripcion/inscripcion/" + params.id, "GET");
 
         if (datos.status === "success") {
             setInscripcion(datos.inscripcion);
         }
 
-        setCargando(false)
-    }
+        setCargando(false);
+    };
 
     return (
         <div className='jumbo'>
@@ -38,11 +33,11 @@ export const Inscripcion = () => {
                     <p>{inscripcion.email}</p>
                     <p>{inscripcion.fecha_nacimiento}</p>
                     <p>{inscripcion.direccion}</p>
+                    <p><strong>Región: </strong>{inscripcion.region?.nombre || 'No especificado'}</p>
+                    <p><strong>Comuna: </strong>{inscripcion.comuna?.nombre || 'No especificado'}</p>
                 </>
-
             }
             <Register />
-
         </div>
-    )
-}
+    );
+};
