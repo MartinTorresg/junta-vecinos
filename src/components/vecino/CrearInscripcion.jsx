@@ -2,32 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { FormularioArticulos } from "../../hooks/FormularioArticulos";
 import { Peticion } from '../../helpers/Peticion';
 import { Global } from '../../helpers/Global';
+import { useRegionesComunas } from '../../helpers/useRegionesComunas';
 
 export const CrearInscripcion = () => {
 
     const { formulario, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
-    const [regiones, setRegiones] = useState([]);
-    const [comunas, setComunas] = useState([]);
-
-    useEffect(() => {
-        // Cargar regiones desde el backend
-        const cargarRegiones = async () => {
-            const response = await Peticion(Global.url + "regiones/regiones", "GET");
-            setRegiones(response.datos);
-        };
-        cargarRegiones();
-    }, []);
-
-    const handleRegionChange = async (e) => {
-        cambiado(e);
-        try {
-            const response = await Peticion(Global.url + `comunas/comunas/region/${e.target.value}`, "GET");
-            setComunas(response.datos);
-        } catch (error) {
-            console.error("Error al cargar comunas:", error);
-        }
-    };
+    const { regiones, comunas, handleRegionChange } = useRegionesComunas(cambiado);
 
 
     const formatearRut = (rutSinFormato) => {

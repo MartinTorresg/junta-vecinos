@@ -1,45 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FormularioArticulos } from "../../hooks/FormularioArticulos";
+import { useRegionesComunas } from '../../helpers/useRegionesComunas';
 import { Peticion } from '../../helpers/Peticion';
 import { Global } from '../../helpers/Global';
 
 export const CrearCertificados = () => {
     const { formulario, enviado, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
-    const [regiones, setRegiones] = useState([]);
-    const [comunas, setComunas] = useState([]);
+    const { regiones, comunas, handleRegionChange } = useRegionesComunas(cambiado);
 
-    useEffect(() => {
-        // Cargar regiones desde el backend
-        const cargarRegiones = async () => {
-            const response = await Peticion(Global.url + "regiones/regiones", "GET");
-            setRegiones(response.datos); // Ajusta según la estructura de tus datos
-        };
-        cargarRegiones();
-    }, []);
-
-    const handleRegionChange = async (e) => {
-        cambiado(e);
-        console.log("Región seleccionada:", e.target.value);
-    
-        try {
-            const response = await Peticion(Global.url + `comunas/comunas/region/${e.target.value}`, "GET");
-            console.log("Respuesta de comunas:", response);
-            setComunas(response.datos);
-        } catch (error) {
-            console.error("Error al cargar comunas:", error);
-        }
-    };
-    
     const guardarCertificado = async (e) => {
         e.preventDefault();
     
-        console.log("Datos del formulario a enviar:", formulario);
+        console.log("Datos del formulario a enviar:", formulario); // Información de los datos del formulario
         let nuevoCertificado = formulario;
     
         try {
             const response = await Peticion(Global.url + "certificado/crear_certificado", "POST", nuevoCertificado);
-            console.log("Respuesta del servidor:", response);
+            console.log("Respuesta del servidor:", response); // Información de la respuesta del servidor
     
             if (response.datos && response.datos.status === "success") {
                 setResultado("guardado");
