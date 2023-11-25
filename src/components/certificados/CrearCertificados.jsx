@@ -33,19 +33,24 @@ export const CrearCertificados = () => {
     
     const guardarCertificado = async (e) => {
         e.preventDefault();
-
-        // Recoger datos del formulario
+    
+        console.log("Datos del formulario a enviar:", formulario);
         let nuevoCertificado = formulario;
-
-        // Guardar certificado en el backend
-        const { datos } = await Peticion(Global.url + "certificado/crear_certificado", "POST", nuevoCertificado);
-
-        if (datos.status === "success") {
-            setResultado("guardado");
-        } else {
+    
+        try {
+            const response = await Peticion(Global.url + "certificado/crear_certificado", "POST", nuevoCertificado);
+            console.log("Respuesta del servidor:", response);
+    
+            if (response.datos && response.datos.status === "success") {
+                setResultado("guardado");
+            } else {
+                setResultado("error");
+            }
+        } catch (error) {
+            console.error("Error durante el envío del formulario:", error);
             setResultado("error");
         }
-    }
+    };
 
     return (
         <div className='jumbo'>
