@@ -8,7 +8,7 @@ export const Listado = ({ certificados, setCertificados }) => {
     const { auth, loading } = useAuth();
 
     const eliminarCertificado = async (id) => {
-        let { datos } = await Peticion(Global.url + "certificado/" + id, "DELETE");
+        let { datos } = await Peticion(Global.url + "certificado/borrar_certificado/" + id, "DELETE");
 
         if (datos.status === "success") {
             let certificadosActualizados = certificados.filter(certificado => certificado._id !== id);

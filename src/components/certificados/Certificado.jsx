@@ -15,6 +15,7 @@ export const Certificado = () => {
 
     const obtenerCertificado = async () => {
         const { datos, cargando } = await Peticion(Global.url + "certificado/certificado/" + params.id, "GET");
+        console.log(params.id)
 
         if (datos.status === "success") {
             setCertificado(datos.certificado);
@@ -22,6 +23,18 @@ export const Certificado = () => {
 
         setCargando(false);
     };
+
+      // Función para eliminar el certificado
+  const eliminarCertificado = async (id) => {
+    const { datos } = await Peticion(Global.url + "certificado/borrar_certificado/" + params.id, "DELETE");
+
+    if (datos.status === "success") {
+      console.log("Certificado eliminado con éxito");
+      // Aquí puedes manejar cualquier actualización de estado o UI
+    } else {
+      console.error("Error al eliminar el certificado");
+    }
+  };
 
     return (
         <div className='jumbo'>
@@ -32,9 +45,9 @@ export const Certificado = () => {
                     <p><strong>Dirección: </strong>{certificado.direccion}</p>
                     <p><strong>Región: </strong>{certificado.region?.nombre || 'No especificado'}</p>
                     <p><strong>Comuna: </strong>{certificado.comuna?.nombre || 'No especificado'}</p>
+                    <CertificadoUsuario certificado={certificado} onEliminar={eliminarCertificado} />
                 </>
             }
-            < CertificadoUsuario />
         </div>
     );
 };

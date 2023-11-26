@@ -1,51 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
+import { useParams } from 'react-router-dom';
 
-export const CertificadoUsuario = () => {
-  const [certificado, setCertificado] = useState({});
-  const [cargando, setCargando] = useState(true);
+export const CertificadoUsuario = ({ certificado, onEliminar }) => {
   const params = useParams();
-
-  useEffect(() => {
-    obtenerCertificado();
-  }, []);
-
-  const obtenerCertificado = async () => {
-    const { datos, cargando } = await Peticion(Global.url + "certificado/certificado/" + params.id, "GET");
-
-    if (datos.status === "success") {
-      setCertificado(datos.certificado);
-    }
-
-    setCargando(false);
-  };
-
+  // Función para enviar el correo electrónico
   const handleSendEmail = async () => {
+    console.log("Iniciando el proceso de envío de correo electrónico");
+    console.log(params.id)
+    // Preparar los datos del certificado
     const datosCertificado = {
       nombre: certificado.nombre,
       rut: certificado.rut,
       direccion: certificado.direccion,
       region: certificado.region?.nombre,
       comuna: certificado.comuna?.nombre,
-      email: certificado.email // Asegúrate de que este campo se esté estableciendo correctamente
+      email: certificado.email
     };
 
+    // Enviar el correo electrónico
     const respuesta = await Peticion(Global.url + "certificado/enviar_certificado", "POST", datosCertificado);
+    console.log("Respuesta de la API:", respuesta);
+    console.log("Datos de respuesta:", respuesta.datos);
+
+    console.log("Función onEliminar:", onEliminar);
     
-    if (respuesta.status === "success") {
-      // Manejar respuesta exitosa (p. ej., mostrar mensaje de confirmación)
+    if (respuesta.datos.status === "success") {
       console.log("Certificado enviado con éxito");
+      await onEliminar(params.id); // Llama a la función de eliminación
     } else {
-      // Manejar errores
       console.error("Error al enviar el certificado");
     }
   };
-
-  if (cargando) {
-    return <div>Cargando...</div>;
-  }
 
   return (
     <div>
