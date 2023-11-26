@@ -3,11 +3,14 @@ import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
 import { CertificadoUsuario } from './CertificadoUsuario';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Certificado = () => {
     const [certificado, setCertificado] = useState({});
     const [cargando, setCargando] = useState(true);
     const params = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         obtenerCertificado();
@@ -30,6 +33,7 @@ export const Certificado = () => {
 
     if (datos.status === "success") {
       console.log("Certificado eliminado con éxito");
+      navigate("/admin/certificados");
       // Aquí puedes manejar cualquier actualización de estado o UI
     } else {
       console.error("Error al eliminar el certificado");
