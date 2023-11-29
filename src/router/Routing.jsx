@@ -29,6 +29,9 @@ import KPIDashboard2 from '../components/layout/municipalidad/KPIDashboard2';
 import { ListaEspacios } from '../components/espacios/ListaEspacios';
 import { FormularioEspacio } from '../components/espacios/FormularioEspacio';
 import { DetalleEspacio } from '../components/espacios/DetalleEspacio';
+import { DetalleReserva } from '../components/reservas/DetalleReserva';
+import { ListaReservas } from '../components/reservas/ListaReservas';
+
 
 export const Routing = () => {
   return (
@@ -53,6 +56,8 @@ export const Routing = () => {
             <Route path="cambio-contrasena" element={<CambioContraseña />} />
             <Route path="espacios" element={<ListaEspacios />} />
             <Route path="espacios/:id" element={<DetalleEspacio />} />
+            <Route path="reservas" element={<ListaReservas />} />
+            <Route path="reservas/:id" element={<DetalleReserva />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>

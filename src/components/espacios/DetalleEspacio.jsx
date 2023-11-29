@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
+import { FormularioReserva } from '../reservas/FormularioReserva'; // Asegúrate de importar correctamente el componente
+
 
 export const DetalleEspacio = () => {
     const [espacio, setEspacio] = useState(null);
     const [cargando, setCargando] = useState(true);
+    const [mostrarFormularioReserva, setMostrarFormularioReserva] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
@@ -29,14 +32,37 @@ export const DetalleEspacio = () => {
     }, [id]);
     
 
-    if (cargando) return <div>Cargando detalles del espacio...</div>;
+    const toggleFormularioReserva = () => {
+        setMostrarFormularioReserva(!mostrarFormularioReserva);
+    };
+
     if (!espacio) return <div>No se encontró el espacio solicitado.</div>;
 
-    // Función para manejar la lógica de reserva (esto es solo un marcador de posición)
-    const reservarEspacio = () => {
-        // Aquí deberás implementar la lógica de reserva
-        console.log('Reserva del espacio:', espacio);
-        // Por ejemplo, mostrar un formulario de reserva o redirigir a la página de reserva
+    const renderHorariosDisponibles = () => {
+        if (!espacio.horariosDisponibles || espacio.horariosDisponibles.length === 0) {
+            return <p>No hay horarios disponibles para este espacio.</p>;
+        }
+
+        return (
+            <table>
+                <thead>
+                    <tr>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Disponible</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {espacio.horariosDisponibles.map((tramo, index) => (
+                        <tr key={index}>
+                            <td>{tramo.inicio}</td>
+                            <td>{tramo.fin}</td>
+                            <td>{tramo.reservado ? "No" : "Sí"}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
     };
 
     return (
@@ -44,8 +70,12 @@ export const DetalleEspacio = () => {
             <h2>{espacio.nombre}</h2>
             <p>{espacio.descripcion}</p>
             <p>Costo por hora: ${espacio.costoPorHora}</p>
-            {/* Más detalles del espacio */}
-            <button onClick={reservarEspacio} className='btn btn-primary'>Reservar</button>
+            {renderHorariosDisponibles()}
+
+            <button onClick={toggleFormularioReserva} className='btn btn-primary'>
+                {mostrarFormularioReserva ? 'Cancelar Reserva' : 'Reservar'}
+            </button>
+            {mostrarFormularioReserva && <FormularioReserva espacioId={id} />}
         </div>
     );
 };

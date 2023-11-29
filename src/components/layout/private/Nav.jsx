@@ -38,6 +38,13 @@ export const Nav = () => {
                     </NavLink>
                 </li>
 
+                <li className="menu-list__item">
+                    <NavLink to="/social/reservas" className="menu-list__link">
+                        <i className="fa-solid fa-users"></i>
+                        <span className="menu-list__title">Mis Reservas</span>
+                    </NavLink>
+                </li>
+
             </ul>
 
             <ul className="container-lists__list-end">
