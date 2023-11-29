@@ -26,6 +26,9 @@ import CambioContraseña from '../components/user/CambioContraseña';
 import KPIDashboard from '../components/layout/municipalidad/KPIDashboard';
 import KPIRegistroVecinosDashboard from '../components/layout/municipalidad/KPIRegistroVecinosDashboard'
 import KPIDashboard2 from '../components/layout/municipalidad/KPIDashboard2';
+import { ListaEspacios } from '../components/espacios/ListaEspacios';
+import { FormularioEspacio } from '../components/espacios/FormularioEspacio';
+import { DetalleEspacio } from '../components/espacios/DetalleEspacio';
 
 export const Routing = () => {
   return (
@@ -48,6 +51,8 @@ export const Routing = () => {
             <Route path="logout" element={<Logout />} />
             <Route path="certificados" element={<CrearCertificadoUsuario />} />
             <Route path="cambio-contrasena" element={<CambioContraseña />} />
+            <Route path="espacios" element={<ListaEspacios />} />
+            <Route path="espacios/:id" element={<DetalleEspacio />} />
           </Route>
 
           <Route path="/admin" element={<AdminLayout />}>
@@ -63,6 +68,8 @@ export const Routing = () => {
             <Route path="actividad/:id" element={<Actividad />} />
             <Route path="certificados" element={<Certificados />} />
             <Route path="certificados/:id" element={<Certificado />} />
+            <Route path="formulario-espacios" element={<FormularioEspacio />} />
+            <Route path="editar-espacio/:espacioId" element={<FormularioEspacio />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

@@ -42,6 +42,13 @@ export const Nav = () => {
                     </NavLink>
                 </li>
 
+                <li className="menu-list__item">
+                    <NavLink to="/admin/formulario-espacios" className="menu-list__link">
+                        <i className="fa-solid fa-users"></i>
+                        <span className="menu-list__title"> Crear Espacios publicos</span>
+                    </NavLink>
+                </li>
+
             </ul>
 
             <ul className="container-lists__list-end">

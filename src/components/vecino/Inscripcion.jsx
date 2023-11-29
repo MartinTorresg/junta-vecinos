@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 export const Inscripcion = () => {
     const [inscripcion, setInscripcion] = useState({});
     const [cargando, setCargando] = useState(true);
+    const [mostrarPopup, setMostrarPopup] = useState(false);
+    const [mensajeRechazo, setMensajeRechazo] = useState('');
     const params = useParams();
     const navigate = useNavigate();
 
@@ -29,14 +31,18 @@ export const Inscripcion = () => {
         try {
             // Llamada al backend para eliminar la inscripción
             const response = await fetch(Global.url + "inscripcion/borrar-inscripcion/" + params.id, {
-                method: "DELETE"
+                method: "DELETE",
+                body: JSON.stringify({ mensajeRechazo: mensajeRechazo }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
             });
-    
+
             const data = await response.json();
-    
+
             if (data.status === "success") {
                 // Enviar correo electrónico de rechazo
-                enviarCorreoRechazo(data.inscripcion.email, "Su inscripción ha sido rechazada.");
+                await enviarCorreoRechazo(inscripcion.email, mensajeRechazo);
                 navigate('/admin/inscripciones');
             } else {
                 // Manejar errores
@@ -45,15 +51,17 @@ export const Inscripcion = () => {
         } catch (error) {
             console.error("Error en rechazarInscripcion: ", error);
         }
+
+        setMostrarPopup(false); // Cierra el popup después de rechazar
     };
-    
+
     const enviarCorreoRechazo = async (email, mensaje) => {
         // Implementar la lógica para enviar un correo electrónico de rechazo
         const correoData = {
             email: email,
             mensaje: mensaje
         };
-    
+
         const response = await fetch(Global.url + "inscripcion/enviarCorreo", {
             method: "POST",
             body: JSON.stringify(correoData),
@@ -61,10 +69,10 @@ export const Inscripcion = () => {
                 "Content-Type": "application/json"
             }
         });
-    
+
         const data = await response.json();
         // Manejar respuesta del servidor
-    };    
+    };
 
     return (
         <div className='jumbo'>
@@ -78,10 +86,25 @@ export const Inscripcion = () => {
                     <p>{inscripcion.direccion}</p>
                     <p><strong>Región: </strong>{inscripcion.region?.nombre || 'No especificado'}</p>
                     <p><strong>Comuna: </strong>{inscripcion.comuna?.nombre || 'No especificado'}</p>
+                    {!cargando && <Register datosInscripcion={inscripcion} />}
+                    <button onClick={() => setMostrarPopup(true)} className='btn btn-danger'>Rechazar Inscripción</button>
                 </>
             }
-            {!cargando && <Register datosInscripcion={inscripcion} />}
-            <button onClick={rechazarInscripcion} className='btn btn-danger'>Rechazar</button>
+            {mostrarPopup && (
+                <div className='modal'>
+                    <div className='modal-content'>
+                        <span className='close' onClick={() => setMostrarPopup(false)}>&times;</span>
+                        <h2>Motivo del Rechazo</h2>
+                        <textarea
+                            placeholder="Escribe el motivo del rechazo aquí"
+                            value={mensajeRechazo}
+                            onChange={(e) => setMensajeRechazo(e.target.value)}
+                        />
+                        <button onClick={() => rechazarInscripcion()} className='btn btn-primary'>Enviar Rechazo</button>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 };
