@@ -14,13 +14,14 @@ export const CrearProyecto = () => {
 
         // Recoger datos formulario
         let nuevoProyecto = formulario;
+        console.log("Datos a enviar:", nuevoProyecto);
 
         // Guardar Proyecto en el backend
         const { datos } = await Peticion(Global.url + "proyecto/crear_proyecto", "POST", nuevoProyecto);
 
         if(datos.status === "success"){
             setResultado("guardado");
-        }else{
+        } else {
             setResultado("error");
         }
     };
@@ -49,6 +50,6 @@ export const CrearProyecto = () => {
 
             </form>
         </div>
-        
+
     )
 }

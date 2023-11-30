@@ -49,7 +49,6 @@ const KPIDashboard2 = () => {
         <div className="kpi-container">
             <div className="kpi">
                 <h2>Tasa de Finalización de Proyectos</h2>
-                <p><strong>Valor Actual:</strong> {kpiFinalizacionProyectos.valor}</p>
                 <p><strong>Descripción:</strong> {kpiFinalizacionProyectos.descripcion}</p>
                 <p><strong>Objetivo:</strong> {kpiFinalizacionProyectos.objetivo}</p>
                 <p><strong>Fórmula de Medición:</strong> {kpiFinalizacionProyectos.formula}</p>

@@ -9,6 +9,54 @@ export const CrearCertificados = () => {
     const [resultado, setResultado] = useState("no_enviado");
     const { regiones, comunas, handleRegionChange } = useRegionesComunas(cambiado);
 
+    const [rutValido, setRutValido] = useState(true);
+
+    const formatearRut = (rutSinFormato) => {
+        let rutLimpio = rutSinFormato.replace(/\./g, '').replace('-', '');
+        if (rutLimpio.length > 9) {
+            rutLimpio = rutLimpio.substring(0, 9);
+        }
+        if (rutLimpio.length > 1) {
+            rutLimpio = `${rutLimpio.slice(0, -1)}-${rutLimpio.slice(-1)}`;
+        }
+        return rutLimpio.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    };
+
+    const validarRut = (rut) => {
+        // Limpiar el RUT
+        let rutLimpio = rut.replace(/\./g, '').replace('-', '');
+
+        // Verificar si el RUT tiene la longitud mínima requerida
+        if (rutLimpio.length < 2) {
+            return false;
+        }
+
+        // Separar el cuerpo del dígito verificador
+        let cuerpo = rutLimpio.slice(0, -1);
+        let dv = rutLimpio.slice(-1).toUpperCase();
+
+        // Calcular dígito verificador
+        let suma = 0;
+        let multiplicador = 2;
+
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+            suma += multiplicador * cuerpo[i];
+            multiplicador = multiplicador < 7 ? multiplicador + 1 : 2;
+        }
+
+        let dvEsperado = 11 - (suma % 11);
+        dvEsperado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+
+        // Comparar el dígito verificador
+        return dv === dvEsperado;
+    };
+
+    const handleChangeRut = (e) => {
+        const rutFormateado = formatearRut(e.target.value);
+        setRutValido(validarRut(rutFormateado));
+        cambiado({ target: { name: 'rut', value: rutFormateado } });
+    };
+
     const guardarCertificado = async (e) => {
         e.preventDefault();
     
@@ -47,13 +95,14 @@ export const CrearCertificados = () => {
 
                 <div className='form-group'>
                     <label htmlFor="email">Correo</label>
-                    <input type="text" name="email" onChange={cambiado} />
+                    <input type="email" name="email" onChange={cambiado} />
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="rut">RUT</label>
-                    <input type="text" name="rut" onChange={cambiado} />
-                </div>
+                <label htmlFor="rut">RUT</label>
+                <input type="text" name="rut" value={formulario.rut} onChange={handleChangeRut} />
+                {!rutValido && <div className="error-message">RUT inválido</div>}
+            </div>
 
                 <div className='form-group'>
                     <label htmlFor="direccion">Dirección</label>

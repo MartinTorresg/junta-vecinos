@@ -31,6 +31,7 @@ import { FormularioEspacio } from '../components/espacios/FormularioEspacio';
 import { DetalleEspacio } from '../components/espacios/DetalleEspacio';
 import { DetalleReserva } from '../components/reservas/DetalleReserva';
 import { ListaReservas } from '../components/reservas/ListaReservas';
+import { ReservasConfirmadas } from '../components/reservas/ReservasConfirmadas';
 
 
 export const Routing = () => {
@@ -40,7 +41,8 @@ export const Routing = () => {
         <Routes>
 
           <Route path="/" element={<PublicLayout />}>
-            <Route index element={<Login />} />
+          <Route index element={<Feed />} />
+            <Route path="feed" element={<Feed />} />
             <Route path="login" element={<Login />} />
             <Route path="inscripcion" element={<CrearInscripcion />} />
             <Route path="crear-certificados" element={<CrearCertificados/>} />
@@ -75,6 +77,7 @@ export const Routing = () => {
             <Route path="certificados/:id" element={<Certificado />} />
             <Route path="formulario-espacios" element={<FormularioEspacio />} />
             <Route path="editar-espacio/:espacioId" element={<FormularioEspacio />} />
+            <Route path="reservas" element={<ReservasConfirmadas />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

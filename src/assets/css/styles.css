@@ -465,7 +465,7 @@ button{
     max-width: 400px; /* Ancho máximo del calendario */
     margin: 0 auto; /* Centrar el calendario horizontalmente */
     font-family: Arial, sans-serif; /* Fuente de texto */
-    background-color: #0c8e0c;
+    background-color: #280c8e;
 }
 
 /* Estilos para los días de la semana (encabezado) */
@@ -609,3 +609,94 @@ button{
     background-color: #0056b3;
   }
   
+/* Estilos para el listado de reservas */
+.lista-reservas {
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lista-reservas h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reserva-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.reserva-item:last-child {
+    border-bottom: none;
+}
+
+.reserva-item h3 {
+    margin: 0;
+    color: #007bff;
+}
+
+.reserva-detalle {
+    margin: 5px 0;
+    color: #666;
+}
+
+.reserva-detalle strong {
+    color: #333;
+}
+
+.lista-reservas .reserva-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.lista-reservas .reserva-item h3 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.lista-reservas .reserva-detalle {
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* ReservasConfirmadas.css */
+.reservas-confirmadas {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.reservas-confirmadas h2 {
+    text-align: center;
+    color: #333;
+}
+
+.reservas-confirmadas table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.reservas-confirmadas th, 
+.reservas-confirmadas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.reservas-confirmadas th {
+    background-color: #f4f4f4;
+}
+
+.reservas-confirmadas .total-ganancias {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: right;
+}

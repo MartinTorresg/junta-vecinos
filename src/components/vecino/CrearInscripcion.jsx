@@ -9,6 +9,52 @@ export const CrearInscripcion = () => {
     const { formulario, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
     const { regiones, comunas, handleRegionChange } = useRegionesComunas(cambiado);
+    const [esRutValido, setEsRutValido] = useState(true);
+    const fechaHoy = new Date();
+    const fechaMinima = new Date();
+    fechaMinima.setFullYear(fechaHoy.getFullYear() - 150);
+
+
+    const formatoFecha = (fecha) => {
+        let dia = ('0' + fecha.getDate()).slice(-2);
+        let mes = ('0' + (fecha.getMonth() + 1)).slice(-2);
+        let año = fecha.getFullYear();
+        return `${año}-${mes}-${dia}`;
+    };
+
+    const fechaMaxima = formatoFecha(fechaHoy);
+    const fechaMinimaString = formatoFecha(fechaMinima);
+
+
+    const validarRut = (rut) => {
+        // Limpiar el RUT
+        let rutLimpio = rut.replace(/\./g, '').replace('-', '');
+
+        // Verificar si el RUT tiene la longitud mínima requerida
+        if (rutLimpio.length < 2) {
+            return false;
+        }
+
+        // Separar el cuerpo del dígito verificador
+        let cuerpo = rutLimpio.slice(0, -1);
+        let dv = rutLimpio.slice(-1).toUpperCase();
+
+        // Calcular dígito verificador
+        let suma = 0;
+        let multiplicador = 2;
+
+        for (let i = cuerpo.length - 1; i >= 0; i--) {
+            suma += multiplicador * cuerpo[i];
+            multiplicador = multiplicador < 7 ? multiplicador + 1 : 2;
+        }
+
+        let dvEsperado = 11 - (suma % 11);
+        dvEsperado = dvEsperado === 11 ? '0' : dvEsperado === 10 ? 'K' : dvEsperado.toString();
+
+        // Comparar el dígito verificador
+        return dv === dvEsperado;
+    };
+
 
 
     const formatearRut = (rutSinFormato) => {
@@ -24,8 +70,22 @@ export const CrearInscripcion = () => {
 
     const handleChangeRut = (e) => {
         const rutFormateado = formatearRut(e.target.value);
-        cambiado({ target: { name: 'run', value: rutFormateado } });
+
+        if (rutFormateado.replace(/\./g, '').replace('-', '').length >= 9) {
+            if (validarRut(rutFormateado)) {
+                cambiado({ target: { name: 'run', value: rutFormateado } });
+                setEsRutValido(true);
+            } else {
+                setEsRutValido(false);
+            }
+        } else {
+            cambiado({ target: { name: 'run', value: rutFormateado } });
+            setEsRutValido(true); // Se asume válido hasta que se ingrese completamente
+        }
     };
+
+
+
 
     const guardarInscripcion = async (e) => {
         e.preventDefault();
@@ -70,6 +130,7 @@ export const CrearInscripcion = () => {
                     <div className='form-group'>
                         <label htmlFor="run">Run</label>
                         <input type="text" name="run" value={formulario.run} onChange={handleChangeRut} />
+                        {!esRutValido && <div className="error-message">RUT inválido</div>}
                     </div>
 
                     <div className='form-group'>
@@ -79,8 +140,15 @@ export const CrearInscripcion = () => {
 
                     <div className='form-group'>
                         <label htmlFor="fecha_nacimiento">Fecha de Nacimiento</label>
-                        <input type="date" name="fecha_nacimiento" onChange={cambiado} />
+                        <input
+                            type="date"
+                            name="fecha_nacimiento"
+                            onChange={cambiado}
+                            max={fechaMaxima}
+                            min={fechaMinimaString}
+                        />
                     </div>
+
 
                     <div className='form-group'>
                         <label htmlFor="region">Región</label>

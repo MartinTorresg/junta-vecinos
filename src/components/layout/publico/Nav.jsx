@@ -9,6 +9,14 @@ export const Nav = () => {
 
 
             <ul className="container-lists__menu-list">
+
+                <li className="menu-list__item">
+                    <NavLink to="/" className="menu-list__link">
+                        <i className="fa-solid fa-house"></i>
+                        <span className="menu-list__title">Inicio</span>
+                    </NavLink>
+                </li>
+
                 <li className="menu-list__item">
                     <NavLink to="/crear-certificados" className="menu-list__link">
                         <i className="fa-solid fa-user"></i>

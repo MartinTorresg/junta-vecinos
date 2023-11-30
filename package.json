@@ -12,6 +12,8 @@
   "dependencies": {
     "@fullcalendar/daygrid": "^6.1.9",
     "@fullcalendar/react": "^6.1.9",
+    "@stripe/react-stripe-js": "^2.4.0",
+    "@stripe/stripe-js": "^2.2.0",
     "axios": "^1.6.0",
     "jspdf": "^2.5.1",
     "jwt-decode": "^4.0.0",
@@ -19,12 +21,14 @@
     "pdfmake": "^0.2.8",
     "react": "^18.2.0",
     "react-calendar": "^4.6.0",
+    "react-datepicker": "^4.23.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.16.0",
     "recharts": "^2.9.3",
     "sendmail": "^1.6.1",
+    "stripe": "^14.5.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

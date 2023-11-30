@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Global } from '../../helpers/Global';
 import { Peticion } from '../../helpers/Peticion';
-import { FormularioReserva } from '../reservas/FormularioReserva'; // Asegúrate de importar correctamente el componente
+import useAuth from '../../hooks/useAuth';
+import { FormularioReserva } from '../reservas/FormularioReserva';
 
 
 export const DetalleEspacio = () => {
     const [espacio, setEspacio] = useState(null);
     const [cargando, setCargando] = useState(true);
-    const [mostrarFormularioReserva, setMostrarFormularioReserva] = useState(false);
     const { id } = useParams();
+    const {auth} = useAuth();
+
+    console.log(auth._id);
 
     useEffect(() => {
         const obtenerEspacio = async () => {
@@ -30,11 +33,6 @@ export const DetalleEspacio = () => {
     
         obtenerEspacio();
     }, [id]);
-    
-
-    const toggleFormularioReserva = () => {
-        setMostrarFormularioReserva(!mostrarFormularioReserva);
-    };
 
     if (!espacio) return <div>No se encontró el espacio solicitado.</div>;
 
@@ -49,7 +47,6 @@ export const DetalleEspacio = () => {
                     <tr>
                         <th>Inicio</th>
                         <th>Fin</th>
-                        <th>Disponible</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +54,6 @@ export const DetalleEspacio = () => {
                         <tr key={index}>
                             <td>{tramo.inicio}</td>
                             <td>{tramo.fin}</td>
-                            <td>{tramo.reservado ? "No" : "Sí"}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -71,11 +67,7 @@ export const DetalleEspacio = () => {
             <p>{espacio.descripcion}</p>
             <p>Costo por hora: ${espacio.costoPorHora}</p>
             {renderHorariosDisponibles()}
-
-            <button onClick={toggleFormularioReserva} className='btn btn-primary'>
-                {mostrarFormularioReserva ? 'Cancelar Reserva' : 'Reservar'}
-            </button>
-            {mostrarFormularioReserva && <FormularioReserva espacioId={id} />}
+            <FormularioReserva espacioId={id} costoPorHora={espacio.costoPorHora} />
         </div>
     );
 };

@@ -43,7 +43,6 @@ const KPIDashboard = () => {
         <div className="kpi-container">
             <div className="kpi">
                 <h2>Tasa de Registro de Vecinos</h2>
-                <p><strong>Valor Actual:</strong> {kpiRegistroVecinos.valor}</p>
                 <p><strong>Descripción:</strong> {kpiRegistroVecinos.descripcion}</p>
                 <p><strong>Objetivo:</strong> {kpiRegistroVecinos.objetivo}</p>
                 <p><strong>Fórmula de Medición:</strong> {kpiRegistroVecinos.formula}</p>

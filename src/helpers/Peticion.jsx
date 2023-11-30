@@ -1,47 +1,40 @@
-export const Peticion = async (url, metodo, datosGuardar = "", archivos = false) => {
-
-    let cargando = true;
-
-
+export const Peticion = async (url, metodo = 'GET', datosGuardar = null, archivos = false) => {
     let opciones = {
-        method: "GET"
-    }
+        method: metodo,
+        headers: new Headers({
+            "Content-Type": "application/json"
+        }),
+    };
 
-    if (metodo == "GET" || metodo == "DELETE") {
-        opciones = {
-            method: metodo,
-        };
-    }
-
-    if (metodo === "POST" || metodo === "PUT") {
+    if (metodo === 'POST' || metodo === 'PUT') {
         if (archivos) {
-            opciones = {
-                method: metodo,
-                body: datosGuardar
-            };
-        } else {
-            opciones = {
-                method: metodo,
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            };
-            if (datosGuardar) {
-                opciones.body = JSON.stringify(datosGuardar);
-            }
+            // Asumiendo que 'datosGuardar' es un objeto FormData para subir archivos
+            opciones.body = datosGuardar;
+        } else if (datosGuardar) {
+            opciones.body = JSON.stringify(datosGuardar);
+        }
+    } else if (metodo === 'GET' || metodo === 'DELETE') {
+        // No se necesita 'body' para estos métodos
+        delete opciones.body;
+    }
+
+    try {
+        const response = await fetch(url, opciones);
+        const datos = await response.json();
+
+        return {
+            ok: response.ok,
+            status: response.status,
+            datos,
+            cargando: false
+        }
+    } catch (error) {
+        console.error("Error en la petición:", error);
+        return {
+            ok: false,
+            status: 'Network error',
+            datos: null,
+            cargando: false
         }
     }
-    
-
-    const peticion = await fetch(url, opciones);
-    const datos = await peticion.json();
-
-    cargando = false;
-
-    return {
-        datos,
-        cargando
-    }
-
 }
-

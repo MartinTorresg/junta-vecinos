@@ -1,73 +1,84 @@
 import React, { useState } from 'react';
-import { Global } from '../../helpers/Global';
-import { Peticion } from '../../helpers/Peticion';
 import useAuth from '../../hooks/useAuth';
+import { Global } from '../../helpers/Global';
 
-export const FormularioReserva = ({ espacioId }) => {
-    const {auth} = useAuth(); // Obtener el usuario actual del hook useAuth
-    const [fecha, setFecha] = useState('');
-    const [horaInicio, setHoraInicio] = useState('');
-    const [horaFin, setHoraFin] = useState('');
-    const [cargando, setCargando] = useState(false);
-    const [error, setError] = useState('');
+export const FormularioReserva = ({ espacioId, costoPorHora }) => {
+  const [fecha, setFecha] = useState('');
+  const [duracion, setDuracion] = useState('');
+  const [hora, setHora] = useState('');
+  const {auth} = useAuth();
 
-    console.log("datos usuario",auth);
-    console.log(auth._id)
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setCargando(true);
-        setError('');
-
-        // Verificar si hay un usuario autenticado y su ID está disponible
-        if (!auth || !auth._id) {
-            setError('Usuario no identificado. Por favor, inicia sesión.');
-            setCargando(false);
-            return;
-        }
-
-        const reserva = {
-            usuarioId: auth.id,
-            espacioId,
-            fecha,
-            horaInicio,
-            horaFin
-        };
-
-        try {
-            const response = await Peticion(`${Global.url}reserva/reservas`, 'POST', reserva);
-            if (response.ok) {
-                // Manejo en caso de éxito, por ejemplo, redirigir o mostrar mensaje de éxito
-            } else {
-                setError('Error al realizar la reserva. Por favor, inténtalo de nuevo.');
-            }
-        } catch (err) {
-            setError('Error al conectar con el servicio. Por favor, verifica tu conexión.');
-        } finally {
-            setCargando(false);
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Construye el objeto de la reserva
+    const reserva = {
+      usuarioId: auth._id, // Este ID debería venir de la sesión del usuario o un contexto
+      espacioId,
+      fecha,
+      duracion,
+      hora
     };
+    
+    // Aquí harías el envío del objeto de la reserva a tu API
+    try {
+      const response = await fetch(Global.url +'reserva/reservas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reserva),
+      });
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h2>Realizar una Reserva</h2>
-            {error && <p className="error">{error}</p>}
-            {/* Aquí irían los inputs para seleccionar el espacio, fecha, horaInicio y horaFin */}
-            <label>
-                Fecha:
-                <input type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
-            </label>
-            <label>
-                Hora de inicio:
-                <input type="time" value={horaInicio} onChange={e => setHoraInicio(e.target.value)} />
-            </label>
-            <label>
-                Hora de fin:
-                <input type="time" value={horaFin} onChange={e => setHoraFin(e.target.value)} />
-            </label>
-            <button type="submit" disabled={cargando}>
-                {cargando ? 'Reservando...' : 'Reservar'}
-            </button>
-        </form>
-    );
+      const data = await response.json();
+      if (response.ok) {
+        // Manejo en caso de éxito (puede ser una redirección o un mensaje de confirmación)
+        console.log('Reserva creada:', data);
+      } else {
+        // Manejo de errores del servidor
+        console.error('Error al crear la reserva:', data.message);
+      }
+    } catch (error) {
+      // Manejo de errores de red
+      console.error('Error al conectar con el servidor:', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Reserva de Espacio</h2>
+      
+      <label htmlFor="fecha">Fecha:</label>
+      <input
+        type="date"
+        id="fecha"
+        name="fecha"
+        value={fecha}
+        onChange={(e) => setFecha(e.target.value)}
+        required
+      />
+      
+      <label htmlFor="duracion">Duración (horas):</label>
+      <input
+        type="number"
+        id="duracion"
+        name="duracion"
+        value={duracion}
+        onChange={(e) => setDuracion(e.target.value)}
+        required
+      />
+      
+      <label htmlFor="hora">Hora de inicio:</label>
+      <input
+        type="time"
+        id="hora"
+        name="hora"
+        value={hora}
+        onChange={(e) => setHora(e.target.value)}
+        required
+      />
+      
+      <button type="submit">Reservar</button>
+    </form>
+  );
 };
