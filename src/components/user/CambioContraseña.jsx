@@ -26,13 +26,16 @@ const CambioContraseñaForm = () => {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + token // Adjuntar el token aquí
                 },
-                
             });
 
             const data = await response.json();
 
             if (response.ok) {
                 setMensaje('Contraseña cambiada con éxito.');
+                // Redirigir al usuario después de un breve tiempo
+                setTimeout(() => {
+                    window.location.href = 'http://localhost:5173/social';
+                }, 2000); // 2 segundos de espera antes de la redirección
             } else {
                 setMensaje(data.message || 'Error al cambiar la contraseña');
             }

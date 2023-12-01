@@ -6,11 +6,16 @@ export const FormularioReserva = ({ espacioId, costoPorHora }) => {
   const [fecha, setFecha] = useState('');
   const [duracion, setDuracion] = useState('');
   const [hora, setHora] = useState('');
-  const {auth} = useAuth();
+  const { auth } = useAuth();
+  const fechaActual = new Date().toISOString().split('T')[0];
+
+  const horasDisponibles = [...Array(24).keys()].map(hora =>
+    `${hora.toString().padStart(2, '0')}:00`); // Esto generará horas de "00:00" a "23:00"
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Construye el objeto de la reserva
     const reserva = {
       usuarioId: auth._id, // Este ID debería venir de la sesión del usuario o un contexto
@@ -19,10 +24,10 @@ export const FormularioReserva = ({ espacioId, costoPorHora }) => {
       duracion,
       hora
     };
-    
+
     // Aquí harías el envío del objeto de la reserva a tu API
     try {
-      const response = await fetch(Global.url +'reserva/reservas', {
+      const response = await fetch(Global.url + 'reserva/reservas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +52,8 @@ export const FormularioReserva = ({ espacioId, costoPorHora }) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Reserva de Espacio</h2>
-      
+      {console.log(espacioId)}
+
       <label htmlFor="fecha">Fecha:</label>
       <input
         type="date"
@@ -55,9 +61,11 @@ export const FormularioReserva = ({ espacioId, costoPorHora }) => {
         name="fecha"
         value={fecha}
         onChange={(e) => setFecha(e.target.value)}
+        min={fechaActual}
         required
       />
-      
+
+
       <label htmlFor="duracion">Duración (horas):</label>
       <input
         type="number"
@@ -67,17 +75,20 @@ export const FormularioReserva = ({ espacioId, costoPorHora }) => {
         onChange={(e) => setDuracion(e.target.value)}
         required
       />
-      
+
       <label htmlFor="hora">Hora de inicio:</label>
-      <input
-        type="time"
+      <select
         id="hora"
         name="hora"
         value={hora}
         onChange={(e) => setHora(e.target.value)}
         required
-      />
-      
+      >
+        {horasDisponibles.map(horaEnPunto => (
+          <option key={horaEnPunto} value={horaEnPunto}>{horaEnPunto}</option>
+        ))}
+      </select>
+
       <button type="submit">Reservar</button>
     </form>
   );

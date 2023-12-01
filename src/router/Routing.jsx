@@ -55,7 +55,7 @@ export const Routing = () => {
             <Route path="proyecto/crear" element={<ProyectoYActividades />} />
             <Route path="logout" element={<Logout />} />
             <Route path="certificados" element={<CrearCertificadoUsuario />} />
-            <Route path="cambio-contrasena" element={<CambioContraseña />} />
+            <Route path="cambiar-contrasena" element={<CambioContraseña />} />
             <Route path="espacios" element={<ListaEspacios />} />
             <Route path="espacios/:id" element={<DetalleEspacio />} />
             <Route path="reservas" element={<ListaReservas />} />

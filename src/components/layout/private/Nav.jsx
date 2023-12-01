@@ -66,6 +66,12 @@ export const Nav = () => {
                     </li>
                 )}
                 <li className="list-end__item">
+                    <NavLink to="/social/cambiar-contrasena" className="list-end__link">
+                        <i className='fa-solid fa-user-shield'></i>
+                        <span className="list-end__name">Cambiar Contraseña</span>
+                    </NavLink>
+                </li>
+                <li className="list-end__item">
                     <NavLink to="/social/logout" className="list-end__link">
                         <i className='fa-solid fa-arrow-right-from-bracket'></i>
                         <span className="list-end__name">Cerrar sesión</span>
