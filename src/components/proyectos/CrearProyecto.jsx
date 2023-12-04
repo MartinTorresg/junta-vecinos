@@ -1,25 +1,28 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from "react";
+import useAuth from '../../hooks/useAuth'; // Importa tu hook de autenticación
 import { FormularioArticulos } from "../../hooks/FormularioArticulos";
 import { Peticion } from '../../helpers/Peticion';
 import { Global } from '../../helpers/Global';
 
 export const CrearProyecto = () => {
-
+    const { auth } = useAuth(); // Obtiene los datos del usuario autenticado
     const { formulario, enviado, cambiado } = FormularioArticulos({});
     const [resultado, setResultado] = useState("no_enviado");
 
     const guardarProyecto = async (e) => {
         e.preventDefault();
 
-        // Recoger datos formulario
-        let nuevoProyecto = formulario;
+        // Asegúrate de que el ID del usuario esté incluido
+        let nuevoProyecto = {
+            ...formulario,
+            user: auth._id // Incluye el ID del usuario
+        };
         console.log("Datos a enviar:", nuevoProyecto);
 
         // Guardar Proyecto en el backend
         const { datos } = await Peticion(Global.url + "proyecto/crear_proyecto", "POST", nuevoProyecto);
 
-        if(datos.status === "success"){
+        if (datos.status === "success") {
             setResultado("guardado");
         } else {
             setResultado("error");

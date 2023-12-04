@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Global } from '../../../helpers/Global';
 import KPIRegistroVecinosDashboard from './KPIRegistroVecinosDashboard';
+import KRIRegistroVecinos from './KRIRegistroVecinos';
+import KRIRegistroVecinosDashboard from './KRIRegistroVecinosDashboard';
 
 const KPIDashboard = () => {
     const [kpiRegistroVecinos, setKpiRegistroVecinos] = useState({
@@ -40,21 +42,34 @@ const KPIDashboard = () => {
     }, []);
 
     return (
-        <div className="kpi-container">
-            <div className="kpi">
-                <h2>Tasa de Registro de Vecinos</h2>
-                <p><strong>Descripción:</strong> {kpiRegistroVecinos.descripcion}</p>
-                <p><strong>Objetivo:</strong> {kpiRegistroVecinos.objetivo}</p>
-                <p><strong>Fórmula de Medición:</strong> {kpiRegistroVecinos.formula}</p>
-                <p><strong>Unidad de Medida:</strong> {kpiRegistroVecinos.unidadMedida}</p>
-                <p><strong>Origen de los Datos:</strong> {kpiRegistroVecinos.origenDatos}</p>
-                <p><strong>Periodicidad de Medición:</strong> {kpiRegistroVecinos.periodicidadMedicion}</p>
-                <p><strong>Frecuencia de Análisis:</strong> {kpiRegistroVecinos.frecuenciaAnalisis}</p>
-                <p><strong>Límites Admitidos:</strong> {kpiRegistroVecinos.limites}</p>
+        <div className="dashboard-container">
+            {/* Sección del KPI */}
+            <div className="kpi-section">
+                <div className="kpi kpi-description">
+                    <h2>Tasa de Registro de Vecinos</h2>
+                    <p><strong>Descripción:</strong> {kpiRegistroVecinos.descripcion}</p>
+                    <p><strong>Objetivo:</strong> {kpiRegistroVecinos.objetivo}</p>
+                    <p><strong>Fórmula de Medición:</strong> {kpiRegistroVecinos.formula}</p>
+                    <p><strong>Unidad de Medida:</strong> {kpiRegistroVecinos.unidadMedida}</p>
+                    <p><strong>Origen de los Datos:</strong> {kpiRegistroVecinos.origenDatos}</p>
+                    <p><strong>Periodicidad de Medición:</strong> {kpiRegistroVecinos.periodicidadMedicion}</p>
+                    <p><strong>Frecuencia de Análisis:</strong> {kpiRegistroVecinos.frecuenciaAnalisis}</p>
+                    <p><strong>Límites Admitidos:</strong> {kpiRegistroVecinos.limites}</p>
+                </div>
+                <div className="dashboard">
+                    <h1>Dashboard</h1>
+                    <KPIRegistroVecinosDashboard />
+                </div>
+
             </div>
-            <div>
-                <h1>Dashboard</h1>
-                <KPIRegistroVecinosDashboard />
+            {/* Sección del KRI */}
+            <div className="kri-section">
+                <div className="kri kri-description">
+                    <KRIRegistroVecinos />
+                </div>
+                <div className="dashboard">
+                    <KRIRegistroVecinosDashboard />
+                </div>
             </div>
         </div>
     );

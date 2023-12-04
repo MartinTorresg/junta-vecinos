@@ -40,7 +40,11 @@ export const DetalleEspacio = () => {
         if (!espacio.horariosDisponibles || espacio.horariosDisponibles.length === 0) {
             return <p>No hay horarios disponibles para este espacio.</p>;
         }
-
+    
+        // Asumiendo que los horarios están ordenados
+        const primerHorario = espacio.horariosDisponibles[0].inicio;
+        const ultimoHorario = espacio.horariosDisponibles[espacio.horariosDisponibles.length - 1].fin;
+    
         return (
             <table>
                 <thead>
@@ -50,12 +54,10 @@ export const DetalleEspacio = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {espacio.horariosDisponibles.map((tramo, index) => (
-                        <tr key={index}>
-                            <td>{tramo.inicio}</td>
-                            <td>{tramo.fin}</td>
-                        </tr>
-                    ))}
+                    <tr>
+                        <td>{primerHorario}</td>
+                        <td>{ultimoHorario}</td>
+                    </tr>
                 </tbody>
             </table>
         );

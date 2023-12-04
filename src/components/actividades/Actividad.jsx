@@ -36,8 +36,8 @@ export const Actividad = () => {
                 console.error('Error al aprobar la actividad:', datos.message);
             }
         } catch (error) {
-            // Manejar errores de red u otros errores inesperados
             console.error('Error al aprobar la actividad:', error);
+            res.status(500).json({ status: 'error', message: 'Error al aprobar la actividad' });
         }
     };
 
@@ -52,7 +52,7 @@ export const Actividad = () => {
                     <p>Cupo: {actividad.cupo}</p>
 
                     {/* Botón para aprobar la actividad */}
-                    {auth.email === 'admin@gmail.com' && (
+                    {auth.email === 'admin@gmail.com' && actividad.estado === 'pendiente' && (
                         <button className="approve" onClick={aprobarActividad}>
                             Aprobar
                         </button>

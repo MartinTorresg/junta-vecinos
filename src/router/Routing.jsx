@@ -32,6 +32,7 @@ import { DetalleEspacio } from '../components/espacios/DetalleEspacio';
 import { DetalleReserva } from '../components/reservas/DetalleReserva';
 import { ListaReservas } from '../components/reservas/ListaReservas';
 import { ReservasConfirmadas } from '../components/reservas/ReservasConfirmadas';
+import { ReservasPendientes } from '../components/reservas/ReservasPendientes';
 
 
 export const Routing = () => {
@@ -78,6 +79,7 @@ export const Routing = () => {
             <Route path="formulario-espacios" element={<FormularioEspacio />} />
             <Route path="editar-espacio/:espacioId" element={<FormularioEspacio />} />
             <Route path="reservas" element={<ReservasConfirmadas />} />
+            <Route path="crear-reservas" element={<ReservasPendientes />} />
 
             <Route path="logout" element={<Logout />} />
           </Route>

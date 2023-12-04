@@ -52,22 +52,22 @@ body {
     color: var(--color-general-text);
 }
 
-.layout{
+.layout {
     display: grid;
-    grid-template-areas: 
-        "nav nav " 
+    grid-template-areas:
+        "nav nav "
         "content aside";
     grid-template-rows: 60px auto auto;
     grid-template-columns: 70% 30%;
     width: 100%;
     height: 100%;
     max-height: 80rem;
-        
+
 }
 
 
 /*ESTILOS NAVBAR*/
-.layout__navbar{
+.layout__navbar {
     width: 100%;
     grid-area: nav;
     background-color: var(--color-backgroud-navbar);
@@ -78,72 +78,74 @@ body {
     height: 5.3rem;
 }
 
-.layout__navbar *{
+.layout__navbar * {
     color: var(--color-text-navbar);
 }
 
-.navbar__title{
+.navbar__title {
     font-size: 1.8rem;
     padding: 1.8rem;
 }
 
-.navbar__container-lists{
+.navbar__container-lists {
     width: 95%;
     display: flex;
     justify-content: space-between;
     padding-left: 1.5rem;
 }
 
-.container-lists__menu-list{
+.container-lists__menu-list {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.menu-list__link{
+.menu-list__link {
     padding: 1.8rem;
 }
 
-.menu-list__title{
+.menu-list__title {
     padding: 0.5rem;
 }
 
-.navbar__title:hover, .menu-list__link:hover,
-.list-end__link:hover, .list-end__item:first-child:hover{
+.navbar__title:hover,
+.menu-list__link:hover,
+.list-end__link:hover,
+.list-end__item:first-child:hover {
     background-color: var(--color-hover-navbar);
 }
 
-.container-lists__list-end{
+.container-lists__list-end {
     display: flex;
     align-items: center;
 }
 
-.list-end__item:first-child{
+.list-end__item:first-child {
     padding: 0.6rem;
 }
 
-.list-end__img{
+.list-end__img {
     width: 4rem;
     height: 4rem;
     border-radius: 3.2rem;
 }
 
-.list-end__link{
+.list-end__link {
     padding: 1.8rem;
 }
 
-.list-end__name{
+.list-end__name {
     padding: 0.5rem;
 }
 
 /*ESTILOS BOTONES PUBLICACIONES*/
-.post__buttons{
+.post__buttons {
     display: flex;
     align-items: center;
- 
+
 }
 
-.post__button{
+.post__button {
     color: var(--color-text-navbar);
     padding: 1rem 1.5rem;
     font-size: 1.4rem;
@@ -153,18 +155,18 @@ body {
 }
 
 
-.post__button:hover{
+.post__button:hover {
     background-color: var(--color-background-btn-delete-hover);
     border-color: var(--color-border-btn-delete-hover);
 }
 
-.content__container-btn{
+.content__container-btn {
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-.content__btn-more-post{
+.content__btn-more-post {
     background-color: var(--color-background-btn-success);
     color: var(--color-text-navbar);
     padding: 0.5rem 1rem;
@@ -177,31 +179,31 @@ body {
 }
 
 /*ESTILOS BARRA LATERAL*/
-.layout__aside{
+.layout__aside {
     grid-area: aside;
     margin-right: 2rem;
-    
+
 }
 
-.aside__container{
+.aside__container {
     width: 100%;
-    
+
 }
 
-.aside__profile-info{
+.aside__profile-info {
     border: 1px solid var(--color-border-post);
     padding: 2.5rem;
     margin-bottom: 2rem;
     border-radius: 0.4rem;
 }
 
-.profile-info__general-info{
+.profile-info__general-info {
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
-.general-info__container-avatar{
+.general-info__container-avatar {
     width: 7.5rem;
     height: 7.5rem;
     border-radius: 100rem;
@@ -209,21 +211,21 @@ body {
     overflow: hidden;
 }
 
-.container-avatar__img{
+.container-avatar__img {
     height: 100%;
 }
 
-.container-names__name{
-    color: var( --color-text-black);
+.container-names__name {
+    color: var(--color-text-black);
     font-size: 1.7rem;
 }
 
-.container-names__nickname{
-    color: var( --color-text-nickname);
+.container-names__nickname {
+    color: var(--color-text-nickname);
     font-size: 1.7rem;
 }
 
-.profile-info__stats{
+.profile-info__stats {
     width: 100%;
     margin-top: 1rem;
     display: flex;
@@ -231,11 +233,11 @@ body {
     border-top: 1px solid var(--color-border-headers);
 }
 
-.stats__following:first-child{
+.stats__following:first-child {
     padding-left: 0.6rem;
 }
 
-.stats__following{
+.stats__following {
     margin-top: 1rem;
     padding: 0 1.8rem;
     border-right: 2px solid var(--color-border-headers);
@@ -244,50 +246,51 @@ body {
 
 
 
-.following__title{
+.following__title {
     display: block;
     font-weight: bold;
-    color: var( --color-text-black);
+    color: var(--color-text-black);
 }
 
-.following__number{
+.following__number {
     font-weight: bold;
     color: var(--color-number-stats);
 }
 
-.following__link:hover >  .following__number{
+.following__link:hover>.following__number {
     color: var(--color-hover-navbar);
 }
 
 
-.aside__container-form{
+.aside__container-form {
     width: 100%;
     border: 1px solid var(--color-border-post);
     padding: 2.5rem;
     border-radius: 0.4rem;
 }
 
-.container-form__form-post{
+.container-form__form-post {
     width: 100%;
 }
 
-form{
+form {
     max-width: 300px;
 }
 
-.aside__container-form form{
+.aside__container-form form {
     max-width: 100%;
 }
 
-.form-post__inputs, 
+.form-post__inputs,
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea{
+textarea {
     margin-bottom: 1rem;
 }
 
-.form-post__label, label{
+.form-post__label,
+label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 700;
@@ -297,13 +300,13 @@ textarea{
 input[type="text"],
 input[type="email"],
 input[type="password"],
-textarea{
+textarea {
     display: block;
     width: 100%;
     height: auto;
     padding: 0.6rem 1.2rem;
     font-size: 14px;
-    color: var( --color-text-black);
+    color: var(--color-text-black);
     border: 1px solid var(--color-border-textarea);
     border-radius: 4px;
     outline: none;
@@ -314,20 +317,19 @@ textarea{
 .form-post__textarea:focus,
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus
-textarea:focus{
+input[type="password"]:focus textarea:focus {
     border-color: var(--color-border-textarea-focus);
     box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
 }
 
-.form-post__image{
+.form-post__image {
     width: 100%;
 }
 
 
 .form-post__btn-submit,
 input[type="submit"],
-button{
+button {
     background-color: var(--color-background-btn-success);
     color: var(--color-text-navbar) !important;
     padding: 0.5rem 1rem;
@@ -339,7 +341,7 @@ button{
     font-size: 1.4rem;
 }
 
-.alert{
+.alert {
     width: 50%;
     display: block;
     padding: 1rem;
@@ -347,13 +349,13 @@ button{
     border-radius: 3px;
 }
 
-.alert-success{
+.alert-success {
     background: #5cb85c;
     border: 1px solid #0c8e0c;
     color: white;
 }
 
-.alert-danger{
+.alert-danger {
     background: #d92d19;
     border: 1px solid #8a0202;
     color: white;
@@ -361,7 +363,7 @@ button{
 
 /*ESTILOS PARA LAS NOTICIAS*/
 
-.content{
+.content {
     grid-area: content;
     background: #f6f7f9;
 
@@ -377,25 +379,33 @@ button{
     padding: 0 30px;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Espacio entre los elementos del listado */
-    justify-content: flex-start; /* Alineación de los elementos al inicio */
-    margin: -10px; /* Ajusta este margen negativo para compensar el espacio extra de los márgenes de los elementos */
-  }
+    gap: 20px;
+    /* Espacio entre los elementos del listado */
+    justify-content: flex-start;
+    /* Alineación de los elementos al inicio */
+    margin: -10px;
+    /* Ajusta este margen negativo para compensar el espacio extra de los márgenes de los elementos */
+}
 
 .articulo-item {
     background: white;
     border-radius: 10px;
     box-shadow: 0px 0px 6px #ddd;
-    margin: 10px; /* Ajusta el margen para controlar el espacio alrededor de los elementos */
-    padding: 60px 25px; /* Compacta la declaración de padding */
+    margin: 10px;
+    /* Ajusta el margen para controlar el espacio alrededor de los elementos */
+    padding: 60px 25px;
+    /* Compacta la declaración de padding */
     text-align: left;
     max-height: 400px;
     display: flex;
-    flex-basis: calc(50% - 40px); /* Ajusta esta línea: 50% para dos elementos por fila, 40px para compensar el margen */
-    flex-grow: 0; /* Evita que los elementos crezcan más allá del flex-basis */
-    flex-shrink: 0; /* Evita que los elementos se encojan por debajo del flex-basis */
-  }
-  
+    flex-basis: calc(50% - 40px);
+    /* Ajusta esta línea: 50% para dos elementos por fila, 40px para compensar el margen */
+    flex-grow: 0;
+    /* Evita que los elementos crezcan más allá del flex-basis */
+    flex-shrink: 0;
+    /* Evita que los elementos se encojan por debajo del flex-basis */
+}
+
 
 .articulo-item .mascara {
     width: 20%;
@@ -418,19 +428,19 @@ button{
     color: black;
 }
 
-.articulo-item h3 a:hover{
+.articulo-item h3 a:hover {
     color: rgb(3, 74, 227);
 }
 
-.articulo-item .edit{
+.articulo-item .edit {
     margin-right: 20px;
 }
 
-.articulo-item .edit:hover{
+.articulo-item .edit:hover {
     background: #e77b00;
 }
 
-.articulo-item .delete:hover{
+.articulo-item .delete:hover {
     background: #9b0202;
 }
 
@@ -444,17 +454,17 @@ button{
     margin: 25px auto;
 }
 
-.jumbo h1{
+.jumbo h1 {
     font-size: 35px;
     color: #444;
 }
 
-.jumbo p{
+.jumbo p {
     display: block;
     margin-bottom: 40px;
 }
 
-.jumbo .mascara{
+.jumbo .mascara {
     width: 100%;
     height: 150px;
     overflow: hidden;
@@ -462,57 +472,55 @@ button{
 
 /* Estilos para el calendario */
 .react-calendar {
-    max-width: 400px; /* Ancho máximo del calendario */
-    margin: 0 auto; /* Centrar el calendario horizontalmente */
-    font-family: Arial, sans-serif; /* Fuente de texto */
+    max-width: 400px;
+    /* Ancho máximo del calendario */
+    margin: 0 auto;
+    /* Centrar el calendario horizontalmente */
+    font-family: Arial, sans-serif;
+    /* Fuente de texto */
     background-color: #280c8e;
 }
 
 /* Estilos para los días de la semana (encabezado) */
 .react-calendar__month-view__weekdays {
-    font-weight: bold; /* Texto en negrita */
-    text-transform: uppercase; /* Convertir el texto a mayúsculas */
-    padding: 8px 0; /* Espacio interno superior e inferior */
-    background-color: #f0f0f0; /* Color de fondo de los días de la semana */
+    font-weight: bold;
+    /* Texto en negrita */
+    text-transform: uppercase;
+    /* Convertir el texto a mayúsculas */
+    padding: 8px 0;
+    /* Espacio interno superior e inferior */
+    background-color: #f0f0f0;
+    /* Color de fondo de los días de la semana */
 }
 
 /* Estilos para los días en el calendario */
 .react-calendar__month-view__days {
-    font-size: 16px; /* Tamaño de fuente para los días */
+    font-size: 16px;
+    /* Tamaño de fuente para los días */
 }
 
 /* Estilos para los días con actividades */
 .day-with-activities {
-    background-color: #ffcc00; /* Color de fondo para los días con actividades */
-    border-radius: 50%; /* Redondear los marcadores de día */
-    width: 20px; /* Ancho del marcador */
-    height: 20px; /* Altura del marcador */
+    background-color: #ffcc00;
+    /* Color de fondo para los días con actividades */
+    border-radius: 50%;
+    /* Redondear los marcadores de día */
+    width: 20px;
+    /* Ancho del marcador */
+    height: 20px;
+    /* Altura del marcador */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff; /* Color del texto en el marcador */
-    font-weight: bold; /* Texto en negrita */
-    cursor: pointer; /* Cambiar el cursor al hacer clic en el marcador */
+    color: #ffffff;
+    /* Color del texto en el marcador */
+    font-weight: bold;
+    /* Texto en negrita */
+    cursor: pointer;
+    /* Cambiar el cursor al hacer clic en el marcador */
 }
 
-.kpi-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
-}
 
-.kpi {
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    width: 40%;
-}
-
-.kpi-data {
-    font-size: 20px;
-    color: #333;
-    margin-top: 10px;
-}
 
 .modal {
     background-color: white;
@@ -557,58 +565,58 @@ button{
 .listado-container {
     font-family: Arial, sans-serif;
     margin: 20px;
-  }
-  
-  /* Estilos para el título */
-  .listado-title {
+}
+
+/* Estilos para el título */
+.listado-title {
     font-size: 24px;
     margin-bottom: 10px;
-  }
-  
-  /* Estilos para cada elemento de espacio */
-  .espacio-item {
+}
+
+/* Estilos para cada elemento de espacio */
+.espacio-item {
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 15px;
-  }
-  
-  /* Estilos para el nombre del espacio */
-  .espacio-name {
+}
+
+/* Estilos para el nombre del espacio */
+.espacio-name {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
-  }
-  
-  /* Estilos para la descripción */
-  .espacio-description {
+}
+
+/* Estilos para la descripción */
+.espacio-description {
     margin-bottom: 8px;
-  }
-  
-  /* Estilos para el costo por hora */
-  .espacio-cost {
+}
+
+/* Estilos para el costo por hora */
+.espacio-cost {
     font-weight: bold;
-  }
-  
-  /* Estilos adicionales para enlaces o botones de acción */
-  .espacio-actions {
+}
+
+/* Estilos adicionales para enlaces o botones de acción */
+.espacio-actions {
     margin-top: 10px;
-  }
-  
-  /* Estilos para enlaces */
-  .espacio-actions a {
+}
+
+/* Estilos para enlaces */
+.espacio-actions a {
     text-decoration: none;
     padding: 5px 10px;
     background-color: #007bff;
     color: #fff;
     border-radius: 3px;
     transition: background-color 0.3s ease;
-  }
-  
-  .espacio-actions a:hover {
+}
+
+.espacio-actions a:hover {
     background-color: #0056b3;
-  }
-  
+}
+
 /* Estilos para el listado de reservas */
 .lista-reservas {
     margin: 0 auto;
@@ -684,7 +692,7 @@ button{
     margin-top: 20px;
 }
 
-.reservas-confirmadas th, 
+.reservas-confirmadas th,
 .reservas-confirmadas td {
     border: 1px solid #ddd;
     padding: 8px;
@@ -699,4 +707,285 @@ button{
     margin-top: 20px;
     font-weight: bold;
     text-align: right;
+}
+
+.error {
+    color: #D8000C;
+    /* Color rojo para el texto de error */
+    background-color: #FFD2D2;
+    /* Fondo de color rojo claro para mayor contraste */
+    padding: 10px;
+    /* Espacio interior para que el texto no esté pegado a los bordes */
+    margin: 10px 0;
+    /* Margen superior e inferior para separar del resto de elementos */
+    border: 1px solid #D8000C;
+    /* Borde rojo para resaltar el error */
+    border-radius: 5px;
+    /* Bordes redondeados para un look suavizado */
+    text-align: center;
+    /* Texto centrado para captar la atención */
+    font-size: 0.9em;
+    /* Un tamaño de fuente ligeramente menor para diferenciar del texto normal */
+    font-weight: bold;
+    /* Texto en negrita para darle importancia */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    /* Sombra suave para darle profundidad */
+}
+
+.exito {
+    color: #4F8A10;
+    /* Color verde para el texto de éxito */
+    background-color: #DFF2BF;
+    /* Fondo de color verde claro para mayor contraste */
+    padding: 10px;
+    /* Espacio interior para que el texto no esté pegado a los bordes */
+    margin: 10px 0;
+    /* Margen superior e inferior para separar del resto de elementos */
+    border: 1px solid #4F8A10;
+    /* Borde verde para resaltar el mensaje de éxito */
+    border-radius: 5px;
+    /* Bordes redondeados para un look suavizado */
+    text-align: center;
+    /* Texto centrado para captar la atención */
+    font-size: 0.9em;
+    /* Un tamaño de fuente ligeramente menor para diferenciar del texto normal */
+    font-weight: bold;
+    /* Texto en negrita para darle importancia */
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    /* Sombra suave para darle profundidad */
+}
+
+/* ReservasPendientes.css */
+.reservas-pendientes {
+    margin: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.reservas-pendientes h2 {
+    text-align: center;
+    color: #333;
+}
+
+.reservas-pendientes table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Agrega sombra para profundidad */
+}
+
+.reservas-pendientes th,
+.reservas-pendientes td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    /* Aumenta el padding para más espacio */
+    text-align: left;
+}
+
+.reservas-pendientes th {
+    background-color: #e9e9e9;
+    /* Un tono ligeramente diferente para los encabezados */
+    color: #000;
+    /* Texto más oscuro para los encabezados */
+    font-size: 1.1em;
+    /* Hacer el texto de los encabezados un poco más grande */
+}
+
+.reservas-pendientes tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+    /* Alternar colores para las filas */
+}
+
+.reservas-pendientes tbody tr:hover {
+    background-color: #f1f1f1;
+    /* Color al pasar el ratón para interacción */
+}
+
+.reservas-pendientes button {
+    padding: 5px 10px;
+    /* Padding del botón */
+    background-color: #5cb85c;
+    /* Color de fondo para botones de confirmar */
+    color: white;
+    /* Texto en blanco para que resalte sobre el fondo verde */
+    border: none;
+    /* Sin bordes para un botón más limpio */
+    border-radius: 3px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    /* Cursor de mano al pasar el ratón */
+    transition: background-color 0.3s ease;
+    /* Transición suave al cambiar de color */
+}
+
+.reservas-pendientes button:hover {
+    background-color: #4cae4c;
+    /* Oscurecer el botón al pasar el ratón */
+}
+
+.jumbo-proyecto {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.jumbo-proyecto h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.jumbo-proyecto p {
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.jumbo-proyecto textarea,
+.jumbo-proyecto input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Esto asegura que el padding no afecte el ancho total */
+}
+
+.jumbo-proyecto select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    box-sizing: border-box;
+}
+
+.jumbo-proyecto button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.jumbo-proyecto button:hover {
+    background-color: #4cae4c;
+}
+
+/* Utiliza esta clase para espaciar elementos si es necesario */
+.spacer {
+    margin-bottom: 10px;
+}
+
+.alerta-exito-proyecto {
+    padding: 10px;
+    background-color: #daf5d4;
+    /* color de fondo verde claro */
+    color: #1e7e34;
+    /* color de texto verde oscuro */
+    border-left: 5px solid #28a745;
+    /* borde izquierdo sólido y verde */
+    margin: 10px 0;
+    /* margen superior e inferior */
+    display: inline-block;
+    /* o 'block' si prefieres que ocupe la línea entera */
+    border-radius: 4px;
+    /* bordes redondeados */
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px; /* Esto agrega un margen alrededor de todo el contenedor */
+}
+
+.kpi-container,
+.kri-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi,
+.kri {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.dashboard {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: #f9f9f9; /* Color de fondo para las tarjetas de los dashboards */
+}
+
+/* Asegúrate de que .kpi y .kri no estén demasiado anchos para evitar que se apilen horizontalmente */
+.kpi,
+.kri {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: #f9f9f9; /* Color de fondo para las tarjetas de KPI y KRI */
+}
+
+/* Si los dashboards son muy anchos, podrías necesitar limitar su ancho o permitir el desbordamiento */
+.dashboard-chart {
+    max-width: 100%; /* Ajusta al ancho que necesites */
+    overflow-x: auto; /* Para permitir desplazamiento horizontal si es necesario */
+}
+
+/* Asegúrate de que las secciones del KRI tengan los márgenes y paddings deseados */
+.kpi-section,
+.kri-section {
+    margin-bottom: 20px;
+    padding: 20px; /* Esto agrega relleno alrededor de las secciones del KPI y KRI */
+    background: #fff; /* Color de fondo en caso de que quieras diferenciar las secciones */
+    border-radius: 10px; /* Si quieres bordes redondeados para las secciones */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Opcional: agrega una sombra para dar profundidad */
+}
+
+/* Si necesitas alinear los títulos de KPI y KRI con sus dashboards */
+.kpi > h2,
+.kri > h2 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Ajusta según necesites */
+}
+
+/* Estilos para el título de dashboard */
+.dashboard > h1 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Ajusta según necesites */
+}
+
+/* Añade un poco de espacio entre las secciones de descripción y los dashboards */
+.kpi-description,
+.kri-description {
+    margin-bottom: 20px;
+}
+
+.archivos-subidos {
+    margin-top: 20px;
+}
+
+.archivo-item {
+    margin-bottom: 10px; /* Espacio entre elementos de archivo */
+}
+
+.archivo-nombre {
+    margin-right: 10px; /* Espacio entre el nombre del archivo y los botones */
+}
+
+.btn {
+    margin-right: 5px; /* Espacio entre botones */
+    /* Otros estilos para tus botones, como padding, colores, etc. */
 }
