@@ -53,7 +53,7 @@ export const Nav = () => {
                     <li className="menu-list__item">
                         <NavLink to="/admin" className="menu-list__link">
                             <i className="fa-solid fa-user-shield"></i>
-                            <span className="menu-list__title">Admin</span>
+                            <span className="menu-list__title">Menu Administrador</span>
                         </NavLink>
                     </li>
                 )}
@@ -61,7 +61,7 @@ export const Nav = () => {
                     <li className="menu-list__item">
                         <NavLink to="/municipalidad" className="menu-list__link">
                             <i className="fa-solid fa-building"></i>
-                            <span className="menu-list__title">Municipalidad</span>
+                            <span className="menu-list__title">Menu Municipalidad</span>
                         </NavLink>
                     </li>
                 )}

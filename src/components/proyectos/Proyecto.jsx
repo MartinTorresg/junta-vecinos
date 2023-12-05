@@ -63,28 +63,32 @@ export const Proyecto = () => {
 
     const modificarProyecto = async (e) => {
         e.preventDefault(); // Previene el comportamiento por defecto del formulario
-
+    
         // Verifica si el estado es "Finalizado" y si el presupuesto gastado no ha sido ingresado
         if (estadoProyecto === "Finalizado" && (!presupuestoGastadoEditado || presupuestoGastadoEditado <= 0)) {
             alert("Debes ingresar el presupuesto gastado para finalizar el proyecto.");
             return;
         }
-
+    
+        // Verifica si el estado es "En Proceso" y si el presupuesto es 0 o menor
+        if (estadoProyecto === "En Proceso" && (presupuestoEditado <= 0)) {
+            alert("El presupuesto no puede ser 0 al estar en proceso.");
+            return;
+        }
+    
         const datosActualizados = {
             descripcion: descripcionEditada,
             presupuesto: presupuestoEditado,
             estado: estadoProyecto,
             presupuestoGastado: presupuestoGastadoEditado // Asegúrate de enviar el presupuesto gastado al backend
         };
-
+    
         const respuesta = await Peticion(Global.url + "proyecto/proyecto/modificar/" + proyecto._id, "PUT", datosActualizados);
-
+    
         if (respuesta.status === "success") {
             console.log('Respuesta del servidor al modificar proyecto:', respuesta);
             setMensajeExito('El proyecto se ha modificado con éxito.');
-            // Suponiendo que la respuesta del servidor contiene el proyecto actualizado en 'respuesta.proyecto'
             setProyecto(respuesta.proyecto);
-            // Actualiza los estados de presupuestoEditado y estadoProyecto
             setPresupuestoEditado(respuesta.proyecto.presupuesto);
             setPresupuestoGastadoEditado(respuesta.proyecto.presupuestoGastado);
             setEstadoProyecto(respuesta.proyecto.estado);
@@ -92,13 +96,41 @@ export const Proyecto = () => {
             console.error('Error al modificar el proyecto:', respuesta.message || 'Mensaje de error no proporcionado');
             setMensajeExito('El proyecto se ha modificado con éxito.');
         }
-
+    
         setTimeout(() => setMensajeExito(''), 5000);
     };
+    
 
-    const handleChangeEstado = (e) => {
+    const handleChangeEstado = async (e) => {
         const nuevoEstado = e.target.value;
         setEstadoProyecto(nuevoEstado);
+    
+        if (nuevoEstado === "Rechazado") {
+            if (window.confirm("¿Estás seguro de que deseas rechazar este proyecto? Esto enviará una notificación al usuario y eliminará el proyecto.")) {
+                // Enviar solicitud al backend para manejar el rechazo
+                try {
+                    const response = await fetch(`${Global.url}proyecto/rechazar/${params.id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            // Incluir aquí otros headers necesarios, como tokens de autenticación
+                        },
+                        body: JSON.stringify({ userId: proyecto.user }) // Enviar el ID del usuario del proyecto
+                    });
+    
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert("Proyecto rechazado y usuario notificado.");
+                        // Aquí puedes redireccionar al usuario o actualizar la interfaz de usuario
+                    } else {
+                        alert("Error al rechazar el proyecto: " + data.message);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Hubo un problema al procesar la solicitud.');
+                }
+            }
+        }
     }
 
     const handleFileChange = (e) => {

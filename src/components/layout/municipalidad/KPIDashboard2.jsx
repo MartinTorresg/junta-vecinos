@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Global } from '../../../helpers/Global';
 import KPITasaFinalizacionProyectosDashboard from './KPITasaFinalizacionProyectosDashboard';
+import KRIPresupuestoProyectos from './KRIPresupuestoProyectos';
+import KRIPresupuestoProyectosDashboard from './KRIPresupuestoProyectosDashboard';
 
 const KPIDashboard2 = () => {
     const [kpiFinalizacionProyectos, setKpiFinalizacionProyectos] = useState({
@@ -46,20 +48,34 @@ const KPIDashboard2 = () => {
     }, []);
 
     return (
-        <div className="kpi-container">
-            <div className="kpi">
-                <h2>Tasa de Finalización de Proyectos</h2>
-                <p><strong>Descripción:</strong> {kpiFinalizacionProyectos.descripcion}</p>
-                <p><strong>Objetivo:</strong> {kpiFinalizacionProyectos.objetivo}</p>
-                <p><strong>Fórmula de Medición:</strong> {kpiFinalizacionProyectos.formula}</p>
-                <p><strong>Unidad de Medida:</strong> {kpiFinalizacionProyectos.unidadMedida}</p>
-                <p><strong>Origen de los Datos:</strong> {kpiFinalizacionProyectos.origenDatos}</p>
-                <p><strong>Periodicidad de Medición:</strong> {kpiFinalizacionProyectos.periodicidadMedicion}</p>
-                <p><strong>Frecuencia de Análisis:</strong> {kpiFinalizacionProyectos.frecuenciaAnalisis}</p>
-                <p><strong>Límites Admitidos:</strong> {kpiFinalizacionProyectos.limites}</p>
+        <div className="dashboard-container">
+            {/* Sección del KPI */}
+            <div className="kpi-section">
+                <div className="kpi kpi-description">
+                    <h2>Tasa de Finalización de Proyectos</h2>
+                    <p><strong>Descripción:</strong> {kpiFinalizacionProyectos.descripcion}</p>
+                    <p><strong>Objetivo:</strong> {kpiFinalizacionProyectos.objetivo}</p>
+                    <p><strong>Fórmula de Medición:</strong> {kpiFinalizacionProyectos.formula}</p>
+                    <p><strong>Unidad de Medida:</strong> {kpiFinalizacionProyectos.unidadMedida}</p>
+                    <p><strong>Origen de los Datos:</strong> {kpiFinalizacionProyectos.origenDatos}</p>
+                    <p><strong>Periodicidad de Medición:</strong> {kpiFinalizacionProyectos.periodicidadMedicion}</p>
+                    <p><strong>Frecuencia de Análisis:</strong> {kpiFinalizacionProyectos.frecuenciaAnalisis}</p>
+                    <p><strong>Límites Admitidos:</strong> {kpiFinalizacionProyectos.limites}</p>
+                </div>
+                <div className="dashboard">
+                    <h1>Dashboard</h1>
+                    <KPITasaFinalizacionProyectosDashboard />
+                </div>
             </div>
-            {/* Aquí deberías incluir la visualización del KPI, si es necesario */}
-            <KPITasaFinalizacionProyectosDashboard />
+            {/* Sección del KRI */}
+            <div className="kri-section">
+                <div className="kri kri-description">
+                    <KRIPresupuestoProyectos />
+                </div>
+                <div className="dashboard">
+                    <KRIPresupuestoProyectosDashboard />
+                </div>
+            </div>
         </div>
     );
 };
