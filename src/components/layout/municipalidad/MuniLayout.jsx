@@ -23,11 +23,11 @@ export const MuniLayout = () => {
 
         {/* Contenido principal */}
         <section className='layout_content'>
-          {auth.email === 'municipalidad@gmail.com' ?
+          {auth.role === 'municipalidad' ? (
             <Outlet />
-            :
+          ) : (
             <Navigate to="/login" />
-          }
+          )}
         </section>
 
         <SideBar />

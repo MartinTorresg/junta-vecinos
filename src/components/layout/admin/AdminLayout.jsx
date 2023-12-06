@@ -22,11 +22,11 @@ export const AdminLayout = () => {
 
         {/* Contenido principal */}
         <section className='layout_content'>
-          {auth.email === 'admin@gmail.com' ?
+          {auth.role === 'admin' ? (
             <Outlet />
-            :
+          ) : (
             <Navigate to="/login" />
-          }
+          )}
         </section>
 
         <SideBar />

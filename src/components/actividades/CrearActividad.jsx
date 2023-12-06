@@ -22,8 +22,7 @@ export const CrearActividad = () => {
       nombre,
       fecha,
       hora,
-      lugar,
-      cupo
+      lugar
     };
 
     try {
@@ -44,7 +43,6 @@ export const CrearActividad = () => {
         setFecha('');
         setHora('');
         setLugar('');
-        setCupo('');
       } else {
         setError(data.message || 'Error al crear la actividad. Por favor, intente de nuevo.');
       }
@@ -80,11 +78,6 @@ export const CrearActividad = () => {
         <div className='form-group'>
           <label htmlFor='lugar'>Lugar</label>
           <input type='text' id='lugar' value={lugar} onChange={(e) => setLugar(e.target.value)} required />
-        </div>
-
-        <div className='form-group'>
-          <label htmlFor='cupo'>Cupo</label>
-          <input type='number' id='cupo' value={cupo} onChange={(e) => setCupo(e.target.value)} required />
         </div>
 
         <button type='submit' className='btn btn-success'>Guardar</button>

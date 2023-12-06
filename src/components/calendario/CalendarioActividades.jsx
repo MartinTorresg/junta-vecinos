@@ -86,7 +86,7 @@ const CalendarioActividades = () => {
                         <ul className="modal-lista">
                             {actividadesSeleccionadas.map((actividad, index) => (
                                 <li key={index}>
-                                    <Link to={"/admin/actividad/" + actividad._id}>{actividad.nombre}</Link> - {actividad.lugar} - {convertirAFechaUTC(actividad.fecha).toLocaleDateString()}
+                                    {actividad.nombre} - {actividad.lugar} - {actividad.hora} - {convertirAFechaUTC(actividad.fecha).toLocaleDateString()}
                                 </li>
                             ))}
                         </ul>
